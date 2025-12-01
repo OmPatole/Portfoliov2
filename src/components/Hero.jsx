@@ -28,16 +28,24 @@ const Hero = ({ isDark, isVisible, scrollToSection }) => {
         </p>
 
         <div className={`flex flex-col md:flex-row items-center justify-center gap-4 ${isVisible ? 'animate-fade-in-up delay-300' : 'opacity-0'}`}>
-          <button 
+          <a 
+            href="/src/assets/Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className={`px-8 py-3 rounded-xl font-bold hover:shadow-lg transition-all transform hover:-translate-y-1 w-full md:w-auto flex items-center justify-center gap-2 group active:scale-95 ${
               isDark
                 ? 'bg-linear-to-r from-[#89b4fa] to-[#b4befe] text-[#1e1e2e] hover:shadow-[#89b4fa]/25'
                 : 'bg-linear-to-r from-[#1e66f5] to-[#7287fd] text-[#fdfbf7] hover:shadow-[#1e66f5]/25'
             }`}
+            onClick={(e) => {
+              e.preventDefault();
+              window.open('/src/assets/Resume.pdf', '_blank');
+            }}
           >
             <Download size={20} className="group-hover:animate-bounce" />
             Resume (PDF)
-          </button>
+          </a>
+
           <button 
             onClick={() => scrollToSection('contact')}
             className={`px-8 py-3 rounded-xl glass-card font-medium transition-all w-full md:w-auto active:scale-95 ${
