@@ -1,17 +1,57 @@
-# React + Vite
+# Om Patole - Portfolio v2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Portfolio Preview]
+## 🚀 Live Demo
+Check out the live version here: **[[Your Website URL]](https://ompatole.github.io/Portfoliov2/)**
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 👨‍💻 About Me
+[I am a Frontend Developer passionate about building interactive web experiences using React and modern CSS frameworks.]
 
-## React Compiler
+* **Education:** [B.tech /Shivaji University]
+* **Location:** [Kolhapur/India]
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
+**Languages & Tools:**
+* ![React](https://img.shields.io/badge/-React-61DAFB?style=flat&logo=react&logoColor=black)
+* ![Vite](https://img.shields.io/badge/-Vite-646CFF?style=flat&logo=vite&logoColor=white)
+* ![Tailwind CSS](https://img.shields.io/badge/-Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
+* ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+## ✨ Features
+* Responsive Design (Mobile & Desktop friendly)
+* Dark/Light Mode Toggle
+* Modern UI/UX with Animations
+* Contact Form Integration
 
-## Expanding the ESLint configuration
+## ⚙️ Installation & Setup
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-"# Portfoliov2" 
+To run this project locally:
+
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/OmPatole/Portfoliov2.git
+    ```
+
+2.  **Navigate to the project directory**
+    ```bash
+    cd Portfoliov2
+    ```
+
+3.  **Install dependencies**
+    ```bash
+    npm install
+    ```
+
+4.  **Start the development server**
+    ```bash
+    npm run dev
+    ```
+
+## 📬 Contact
+* **LinkedIn:** [Om Patole](https://linkedin.com/in/om-patole)
+* **Email:** [ompatole.proton.me]
+* **GitHub:** [Om Patole](https://github.com/ompatole)
+
+---
+*© 2025 OmPatole. All Rights Reserved.*
