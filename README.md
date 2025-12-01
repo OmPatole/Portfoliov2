@@ -2,7 +2,7 @@
 
 ![Portfolio Preview]
 ## 🚀 Live Demo
-Check out the live version here: **[[Your Website URL]](https://ompatole.github.io/Portfoliov2/)**
+Check out the live version **[here](https://ompatole.github.io/Portfoliov2/)**
 
 ---
 
@@ -50,7 +50,7 @@ To run this project locally:
 
 ## 📬 Contact
 * **LinkedIn:** [Om Patole](https://linkedin.com/in/om-patole)
-* **Email:** [ompatole.proton.me]
+* **Email:** ompatole.proton.me
 * **GitHub:** [Om Patole](https://github.com/ompatole)
 
 ---
