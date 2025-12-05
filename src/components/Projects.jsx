@@ -4,10 +4,12 @@ const Projects = ({ isDark }) => {
   const projects = [
     {
       title: 'CGPA Calculator',
-      desc: 'A fast and responsive web application for calculating Cumulative Grade Point Average. Features real-time updates and dynamic course management.',
+      desc: 'A clean, efficient, and user-friendly web application for calculating Cumulative Grade Point Average. Features real-time updates and dynamic inputs.',
       tags: ['React', 'Vite', 'Tailwind'],
+      // Green/Teal gradient to match the calculator's logo/theme
       color: isDark ? 'from-[#a6e3a1]/20 to-[#94e2d5]/20' : 'from-[#40a02b]/10 to-[#179299]/10',
       icon: <Calculator size={40} className={isDark ? 'text-[#cdd6f4]/70' : 'text-[#4c4f69]/70'} />,
+      repo: 'https://github.com/ompatole/CGPA-Cal'
     },
     {
       title: 'Neural Net Vis',
@@ -15,6 +17,7 @@ const Projects = ({ isDark }) => {
       tags: ['TypeScript', 'Three.js'],
       color: isDark ? 'from-[#89b4fa]/20 to-[#cba6f7]/20' : 'from-[#1e66f5]/10 to-[#8839ef]/10',
       icon: <Cpu size={40} className={isDark ? 'text-[#cdd6f4]/70' : 'text-[#4c4f69]/70'} />,
+      repo: '#'
     },
     {
       title: 'Algo Trader Bot',
@@ -22,6 +25,7 @@ const Projects = ({ isDark }) => {
       tags: ['Python', 'Pandas', 'Google Cloud'],
       color: isDark ? 'from-[#a6e3a1]/20 to-[#94e2d5]/20' : 'from-[#40a02b]/10 to-[#179299]/10',
       icon: <Terminal size={40} className={isDark ? 'text-[#cdd6f4]/70' : 'text-[#4c4f69]/70'} />,
+      repo: '#'
     },
     {
       title: 'Distributed Cache',
@@ -29,6 +33,7 @@ const Projects = ({ isDark }) => {
       tags: ['Java', 'NIO'],
       color: isDark ? 'from-[#fab387]/20 to-[#f38ba8]/20' : 'from-[#fe640b]/10 to-[#d20f39]/10',
       icon: <Coffee size={40} className={isDark ? 'text-[#cdd6f4]/70' : 'text-[#4c4f69]/70'} />,
+      repo: '#'
     }
   ];
 
@@ -64,7 +69,9 @@ const Projects = ({ isDark }) => {
                     {project.title}
                   </h3>
                   <a
-                    href="#"
+                    href={project.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`transition-colors ${
                       isDark ? 'text-[#a6adc8] hover:text-[#cdd6f4]' : 'text-[#6c6f85] hover:text-[#4c4f69]'
                     }`}
