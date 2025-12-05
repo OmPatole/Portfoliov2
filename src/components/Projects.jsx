@@ -1,7 +1,14 @@
-import { Github, Cpu, Terminal, Coffee } from 'lucide-react';
+import { Github, Cpu, Terminal, Coffee, Calculator } from 'lucide-react';
 
 const Projects = ({ isDark }) => {
   const projects = [
+    {
+      title: 'CGPA Calculator',
+      desc: 'A fast and responsive web application for calculating Cumulative Grade Point Average. Features real-time updates and dynamic course management.',
+      tags: ['React', 'Vite', 'Tailwind'],
+      color: isDark ? 'from-[#a6e3a1]/20 to-[#94e2d5]/20' : 'from-[#40a02b]/10 to-[#179299]/10',
+      icon: <Calculator size={40} className={isDark ? 'text-[#cdd6f4]/70' : 'text-[#4c4f69]/70'} />,
+    },
     {
       title: 'Neural Net Vis',
       desc: 'Interactive 3D visualization of neural network layers using WebGL. Allows users to adjust weights in real-time.',
@@ -94,6 +101,3 @@ const Projects = ({ isDark }) => {
 };
 
 export default Projects;
-
-
-
