@@ -26,14 +26,6 @@ const Projects = ({ isDark }) => {
       color: isDark ? 'from-[#a6e3a1]/20 to-[#94e2d5]/20' : 'from-[#40a02b]/10 to-[#179299]/10',
       icon: <Terminal size={40} className={isDark ? 'text-[#cdd6f4]/70' : 'text-[#4c4f69]/70'} />,
       repo: '#'
-    },
-    {
-      title: 'Distributed Cache',
-      desc: 'High-performance distributed caching system built with Java. Features custom protocol and consistency hashing.',
-      tags: ['Java', 'NIO'],
-      color: isDark ? 'from-[#fab387]/20 to-[#f38ba8]/20' : 'from-[#fe640b]/10 to-[#d20f39]/10',
-      icon: <Coffee size={40} className={isDark ? 'text-[#cdd6f4]/70' : 'text-[#4c4f69]/70'} />,
-      repo: '#'
     }
   ];
 

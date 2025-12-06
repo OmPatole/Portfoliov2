@@ -1,4 +1,5 @@
 import { Download } from 'lucide-react';
+import resumeFile from '../assets/Resume.pdf'; // Add this line
 
 const Hero = ({ isDark, isVisible, scrollToSection }) => {
   return (
@@ -29,9 +30,9 @@ const Hero = ({ isDark, isVisible, scrollToSection }) => {
 
         <div className={`flex flex-col md:flex-row items-center justify-center gap-4 ${isVisible ? 'animate-fade-in-up delay-300' : 'opacity-0'}`}>
           <a 
-            href="/src/assets/Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+              href={resumeFile} // Updated here
+              target="_blank"
+              rel="noopener noreferrer"
             className={`px-8 py-3 rounded-xl font-bold hover:shadow-lg transition-all transform hover:-translate-y-1 w-full md:w-auto flex items-center justify-center gap-2 group active:scale-95 ${
               isDark
                 ? 'bg-linear-to-r from-[#89b4fa] to-[#b4befe] text-[#1e1e2e] hover:shadow-[#89b4fa]/25'
@@ -39,8 +40,8 @@ const Hero = ({ isDark, isVisible, scrollToSection }) => {
             }`}
             onClick={(e) => {
               e.preventDefault();
-              window.open('/src/assets/Resume.pdf', '_blank');
-            }}
+              window.open(resumeFile, '_blank'); // Updated here
+           }}
           >
             <Download size={20} className="group-hover:animate-bounce" />
             Resume (PDF)
