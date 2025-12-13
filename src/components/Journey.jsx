@@ -1,4 +1,5 @@
 import { Network, GraduationCap, School } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Journey = ({ isDark }) => {
   const journeyItems = [
@@ -64,9 +65,9 @@ const Journey = ({ isDark }) => {
   ];
 
   return (
-    <section id="journey" className="py-20 px-4 relative overflow-hidden">
+    <section id="journey" className="py-20 px-4 pb-32 relative overflow-hidden">
       <div className="max-w-4xl mx-auto relative z-10">
-        <h2 className="text-3xl font-bold mb-12 text-center">
+        <h2 className="text-3xl font-bold mb-24 text-center">
           <span
             className={`border-b-2 pb-2 ${isDark ? 'border-[#89b4fa]' : 'border-[#1e66f5]'}`}
           >
@@ -74,26 +75,42 @@ const Journey = ({ isDark }) => {
           </span>
         </h2>
         
-        <div
-          className={`space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-linear-to-b before:from-transparent before:to-transparent ${
-            isDark ? 'before:via-[#585b70]' : 'before:via-[#acb0be]'
-          }`}
-        >
-          {journeyItems.map((item, idx) => (
-            <div key={idx} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-              <div className={`flex items-center justify-center w-10 h-10 rounded-full border bg-slate-900 glass-card shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 group-hover:scale-110 transition-transform duration-300 ${isDark ? 'border-white/20' : 'border-slate-300'} ${item.colorClass}`}>
-                {item.icon}
-              </div>
-              <div className={`w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card p-6 rounded-xl border border-white/10 transition-all duration-300 hover:-translate-y-1 ${isDark ? 'hover:bg-white/5' : 'hover:bg-white/40'} ${item.colorClass}`}>
-                <div className="flex justify-between items-center mb-1">
-                  <h3 className={`font-bold text-lg ${item.titleColor}`}>{item.title}</h3>
-                  <time className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.date}</time>
+        <div className="relative">
+          {/* Animated Line - Extended top and bottom */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className={`absolute left-5 md:left-1/2 -translate-x-px md:-translate-x-1/2 h-[135%] -top-[10%] w-0.5 bg-linear-to-b from-transparent via-10% to-transparent ${
+              isDark ? 'via-[#585b70]' : 'via-[#acb0be]'
+            }`}
+          />
+
+          <div className="space-y-8 relative">
+            {journeyItems.map((item, idx) => (
+              <motion.div 
+                key={idx} 
+                initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
+              >
+                <div className={`flex items-center justify-center w-10 h-10 rounded-full border bg-slate-900 glass-card shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 group-hover:scale-110 transition-transform duration-300 ${isDark ? 'border-white/20' : 'border-slate-300'} ${item.colorClass}`}>
+                  {item.icon}
                 </div>
-                <div className={`text-sm mb-2 ${item.orgColor}`}>{item.org}</div>
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>{item.desc}</p>
-              </div>
-            </div>
-          ))}
+                <div className={`w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card p-6 rounded-xl border border-white/10 transition-all duration-300 hover:-translate-y-1 ${isDark ? 'hover:bg-white/5' : 'hover:bg-white/40'} ${item.colorClass}`}>
+                  <div className="flex justify-between items-center mb-1">
+                    <h3 className={`font-bold text-lg ${item.titleColor}`}>{item.title}</h3>
+                    <time className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.date}</time>
+                  </div>
+                  <div className={`text-sm mb-2 ${item.orgColor}`}>{item.org}</div>
+                  <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>{item.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -101,6 +118,3 @@ const Journey = ({ isDark }) => {
 };
 
 export default Journey;
-
-
-

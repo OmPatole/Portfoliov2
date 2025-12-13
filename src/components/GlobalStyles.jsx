@@ -4,6 +4,7 @@ const GlobalStyles = ({ isDark }) => {
       @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;500;700&display=swap');
       
       body { font-family: 'JetBrains Mono', monospace; }
+      
       .glass-panel {
         background: var(--glass-panel-bg);
         backdrop-filter: blur(12px);
@@ -26,16 +27,10 @@ const GlobalStyles = ({ isDark }) => {
         box-shadow: 0 10px 40px -10px rgba(0,0,0,0.15);
       }
 
-      .gradient-text {
-        display: inline-block;
-        padding-bottom: 0.1em;
-        background: ${
-          isDark
-            ? 'linear-gradient(to right, #89b4fa, #cba6f7, #f5c2e7)'
-            : 'linear-gradient(to right, #1e66f5, #8839ef, #ea76cb)'
-        };
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      /* Mask Gradient for Marquee */
+      .mask-gradient {
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
       }
 
       @keyframes blob {
@@ -64,12 +59,36 @@ const GlobalStyles = ({ isDark }) => {
         0% { opacity: 0; transform: translateX(-20px); }
         100% { opacity: 1; transform: translateX(0); }
       }
+
+      /* Marquee Animations */
+      @keyframes scroll-left {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
+
+      @keyframes scroll-right {
+        from { transform: translateX(-50%); }
+        to { transform: translateX(0); }
+      }
       
       .animate-blob { animation: blob 7s infinite; }
       .animate-float { animation: float-ball 6s ease-in-out infinite; }
       .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
       .animate-fade-in-down { animation: fade-in-down 0.5s ease-out forwards; }
       .animate-slide-in { animation: slide-in-right 0.8s ease-out forwards; }
+      
+      .animate-scroll-left {
+        animation: scroll-left 40s linear infinite;
+      }
+      
+      .animate-scroll-right {
+        animation: scroll-right 40s linear infinite;
+      }
+
+      .hover-pause:hover .animate-scroll-left,
+      .hover-pause:hover .animate-scroll-right {
+        animation-play-state: paused;
+      }
       
       .delay-100 { animation-delay: 100ms; }
       .delay-200 { animation-delay: 200ms; }
@@ -84,6 +103,3 @@ const GlobalStyles = ({ isDark }) => {
 };
 
 export default GlobalStyles;
-
-
-

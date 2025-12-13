@@ -91,16 +91,16 @@ const App = () => {
       className={`min-h-screen font-mono transition-colors duration-700 overflow-x-hidden relative ${
         isDark 
           ? 'bg-linear-to-br from-[#1e1e2e] via-[#181825] to-[#11111b] text-[#cdd6f4] selection:bg-[#f5c2e7]/30 selection:text-[#f5c2e7]'
-          : 'bg-[#eedfc2] text-[#4c4f69] selection:bg-[#ea76cb]/30 selection:text-[#ea76cb]'
+          : 'bg-[#f4ede4] text-[#432818] selection:bg-[#a6662e]/30 selection:text-[#a6662e]'
       }`}
     >
       <GlobalStyles isDark={isDark} />
       <div style={{
-        '--glass-panel-bg': isDark ? 'rgba(30, 30, 46, 0.7)' : 'rgba(253, 251, 247, 0.8)',
-        '--glass-card-bg': isDark ? 'rgba(49, 50, 68, 0.4)' : 'rgba(230, 233, 239, 0.4)',
-        '--glass-card-hover-bg': isDark ? 'rgba(69, 71, 90, 0.6)' : 'rgba(204, 208, 218, 0.6)',
-        '--glass-border': isDark ? 'rgba(147, 153, 178, 0.2)' : 'rgba(156, 160, 176, 0.2)',
-        '--glass-border-hover': isDark ? 'rgba(180, 190, 254, 0.4)' : 'rgba(114, 135, 253, 0.4)',
+        '--glass-panel-bg': isDark ? 'rgba(30, 30, 46, 0.7)' : 'rgba(255, 255, 255, 0.6)',
+        '--glass-card-bg': isDark ? 'rgba(49, 50, 68, 0.4)' : 'rgba(255, 255, 255, 0.5)',
+        '--glass-card-hover-bg': isDark ? 'rgba(69, 71, 90, 0.6)' : 'rgba(255, 255, 255, 0.8)',
+        '--glass-border': isDark ? 'rgba(147, 153, 178, 0.2)' : 'rgba(127, 85, 57, 0.2)',
+        '--glass-border-hover': isDark ? 'rgba(180, 190, 254, 0.4)' : 'rgba(156, 102, 68, 0.5)',
       }}>
         <BackgroundElements isDark={isDark} />
 
