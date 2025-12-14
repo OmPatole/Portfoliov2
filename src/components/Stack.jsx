@@ -1,37 +1,36 @@
 import { Terminal, Code2, Globe, Cpu, Database, Cloud, Github, Coffee, FileCode, Box, Server, CloudLightning } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-// TechCard defined outside to prevent re-renders
-const TechCard = ({ tech, isDark }) => (
-  <div
-    // UPDATED: Reduced min-w for mobile so two cards fit (140px * 2 = 280px < ~360px screen)
-    className={`glass-card p-3 md:p-4 rounded-xl flex items-center justify-center gap-2 md:gap-3 min-w-[140px] md:min-w-[180px] group transition-all duration-300 ${
-      isDark ? 'hover:bg-[#313244]/50' : 'hover:bg-[#e3d5ca]/50'
-    }`}
-  >
-    <div className="group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
-      {tech.icon}
+// Minimalist Tech Item with Separator Dot
+const TechItem = ({ tech, isDark }) => (
+  <div className="flex items-center gap-6">
+    <div className={`flex items-center gap-3 group cursor-default`}>
+      <div className="group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
+        {tech.icon}
+      </div>
+      <span className={`text-lg font-mono font-medium ${isDark ? 'text-[#bac2de]' : 'text-[#7f5539]'}`}>
+        {tech.name}
+      </span>
     </div>
-    <span className={`text-sm font-medium ${isDark ? 'text-[#bac2de]' : 'text-[#7f5539]'}`}>
-      {tech.name}
-    </span>
+    {/* Minimalist Dot Separator */}
+    <div className={`w-1.5 h-1.5 rounded-full opacity-50 ${isDark ? 'bg-[#585b70]' : 'bg-[#ddb892]'}`} />
   </div>
 );
 
 const Stack = ({ isDark }) => {
   const technologies = [
-    { name: 'Python', icon: <Terminal className={isDark ? 'text-[#f9e2af]' : 'text-[#e09f3e]'} size={32} /> },
-    { name: 'JavaScript', icon: <Code2 className={isDark ? 'text-[#f9e2af]' : 'text-[#e09f3e]'} size={32} /> },
-    { name: 'React', icon: <Globe className={isDark ? 'text-[#74c7ec]' : 'text-[#6f4e37]'} size={32} /> },
-    { name: 'Node.js', icon: <Cpu className={isDark ? 'text-[#a6e3a1]' : 'text-[#588157]'} size={32} /> },
-    { name: 'MySQL', icon: <Database className={isDark ? 'text-[#89b4fa]' : 'text-[#9c6644]'} size={32} /> },
-    { name: 'Google Cloud', icon: <Cloud className={isDark ? 'text-[#cdd6f4]' : 'text-[#7f5539]'} size={32} /> },
-    { name: 'Git', icon: <Github className={isDark ? 'text-[#f38ba8]' : 'text-[#bc4749]'} size={32} /> },
-    { name: 'Java', icon: <Coffee className={isDark ? 'text-[#fab387]' : 'text-[#d4a373]'} size={32} /> },
-    { name: 'TypeScript', icon: <FileCode className={isDark ? 'text-[#89b4fa]' : 'text-[#1e66f5]'} size={32} /> },
-    { name: 'Docker', icon: <Box className={isDark ? 'text-[#74c7ec]' : 'text-[#04a5e5]'} size={32} /> }, 
-    { name: 'PostgreSQL', icon: <Server className={isDark ? 'text-[#cba6f7]' : 'text-[#8839ef]'} size={32} /> },
-    { name: 'AWS', icon: <CloudLightning className={isDark ? 'text-[#fab387]' : 'text-[#fe640b]'} size={32} /> },
+    { name: 'Python', icon: <Terminal className={isDark ? 'text-[#f9e2af]' : 'text-[#e09f3e]'} size={28} /> },
+    { name: 'JavaScript', icon: <Code2 className={isDark ? 'text-[#f9e2af]' : 'text-[#e09f3e]'} size={28} /> },
+    { name: 'React', icon: <Globe className={isDark ? 'text-[#74c7ec]' : 'text-[#6f4e37]'} size={28} /> },
+    { name: 'Node.js', icon: <Cpu className={isDark ? 'text-[#a6e3a1]' : 'text-[#588157]'} size={28} /> },
+    { name: 'MySQL', icon: <Database className={isDark ? 'text-[#89b4fa]' : 'text-[#9c6644]'} size={28} /> },
+    { name: 'Google Cloud', icon: <Cloud className={isDark ? 'text-[#cdd6f4]' : 'text-[#7f5539]'} size={28} /> },
+    { name: 'Git', icon: <Github className={isDark ? 'text-[#f38ba8]' : 'text-[#bc4749]'} size={28} /> },
+    { name: 'Java', icon: <Coffee className={isDark ? 'text-[#fab387]' : 'text-[#d4a373]'} size={28} /> },
+    { name: 'TypeScript', icon: <FileCode className={isDark ? 'text-[#89b4fa]' : 'text-[#1e66f5]'} size={28} /> },
+    { name: 'Docker', icon: <Box className={isDark ? 'text-[#74c7ec]' : 'text-[#04a5e5]'} size={28} /> }, 
+    { name: 'PostgreSQL', icon: <Server className={isDark ? 'text-[#cba6f7]' : 'text-[#8839ef]'} size={28} /> },
+    { name: 'AWS', icon: <CloudLightning className={isDark ? 'text-[#fab387]' : 'text-[#fe640b]'} size={28} /> },
   ];
 
   // Duplicate list for infinite loop
@@ -57,7 +56,7 @@ const Stack = ({ isDark }) => {
           <div className="flex overflow-hidden w-full mask-gradient py-4">
             <div className="flex gap-6 w-max animate-scroll-left pl-6">
               {techList.map((tech, idx) => (
-                <TechCard key={`row1-${idx}`} tech={tech} isDark={isDark} />
+                <TechItem key={`row1-${idx}`} tech={tech} isDark={isDark} />
               ))}
             </div>
           </div>
@@ -66,7 +65,7 @@ const Stack = ({ isDark }) => {
           <div className="flex overflow-hidden w-full mask-gradient py-4">
             <div className="flex gap-6 w-max animate-scroll-right pl-6">
               {techList.map((tech, idx) => (
-                <TechCard key={`row2-${idx}`} tech={tech} isDark={isDark} />
+                <TechItem key={`row2-${idx}`} tech={tech} isDark={isDark} />
               ))}
             </div>
           </div>

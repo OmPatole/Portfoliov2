@@ -1,97 +1,110 @@
-import { Github, Cpu, Terminal, Calculator } from 'lucide-react';
+import React from 'react';
 import { motion } from 'framer-motion';
+import { Github, ExternalLink, Wifi, Music, Calculator, Package } from 'lucide-react';
 
 const Projects = ({ isDark }) => {
   const projects = [
     {
-      title: 'CGPA Calculator',
-      desc: 'A clean, efficient, and user-friendly web application for calculating Cumulative Grade Point Average. Features real-time updates and dynamic inputs.',
-      tags: ['React', 'Vite', 'Tailwind'],
-      bgColor: isDark ? 'bg-[#a6e3a1]/20' : 'bg-[#588157]/20',
-      icon: <Calculator size={40} className={isDark ? 'text-[#cdd6f4]/70' : 'text-[#432818]/70'} />,
-      repo: 'https://github.com/ompatole/CGPA-Cal'
+      title: "Ruckus Wi-Fi Manager",
+      description: "Guest Wi-Fi management system using Ruckus routers and Google Auth.",
+      tech: ["Firebase", "Google Auth", "React", "Node.js"],
+      icon: <Wifi size={32} />,
+      github: "#"
     },
     {
-      title: 'Neural Net Vis',
-      desc: 'Interactive 3D visualization of neural network layers using WebGL. Allows users to adjust weights in real-time.',
-      tags: ['TypeScript', 'Three.js'],
-      bgColor: isDark ? 'bg-[#89b4fa]/20' : 'bg-[#6f4e37]/20',
-      icon: <Cpu size={40} className={isDark ? 'text-[#cdd6f4]/70' : 'text-[#432818]/70'} />,
-      repo: '#'
+      title: "Music Downloader",
+      description: "Desktop application to download songs with metadata and cover art.",
+      tech: ["Electron", "React", "Node.js", "API"],
+      icon: <Music size={32} />,
+      github: "#"
     },
     {
-      title: 'Algo Trader Bot',
-      desc: 'High-frequency trading bot analyzing crypto markets. Features backtesting engine and sentiment analysis.',
-      tags: ['Python', 'Pandas', 'Google Cloud'],
-      bgColor: isDark ? 'bg-[#a6e3a1]/20' : 'bg-[#588157]/20',
-      icon: <Terminal size={40} className={isDark ? 'text-[#cdd6f4]/70' : 'text-[#432818]/70'} />,
-      repo: '#'
+      title: "CGPA Calculator",
+      description: "Academic tool for calculating SGPA/CGPA based on university syllabus.",
+      tech: ["JavaScript", "HTML/CSS", "Logic"],
+      icon: <Calculator size={32} />,
+      github: "#",
+      demo: "#" // Added Demo Link only for this project
+    },
+    {
+      title: "App Launcher & Updater",
+      description: "Windows utility to organize, launch, and auto-update installed applications.",
+      tech: ["Electron", "PowerShell", "React", "WinAPI"],
+      icon: <Package size={32} />,
+      github: "#"
     }
   ];
 
   return (
-    <section id="projects" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        <motion.h2 
+    <section id="projects" className="py-20 px-4 flex justify-center items-center">
+      {/* Container - Uses full available width (up to 1600px) */}
+      <div className="w-full max-w-[1600px]">
+        
+        {/* Section Header */}
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.3 }}
-          className="text-3xl font-bold mb-12 text-center"
+          className="text-center mb-16"
         >
-          <span className={`border-b-2 pb-2 ${isDark ? 'border-[#cba6f7]' : 'border-[#a6662e]'}`}>
-            Featured Projects
-          </span>
-        </motion.h2>
+          <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
+          <div className={`h-1 w-20 mx-auto rounded-full ${isDark ? 'bg-[#89b4fa]' : 'bg-[#a6662e]'}`}></div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, idx) => (
+        {/* Grid - 4 Columns on Large Screens (One Line) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {projects.map((project, index) => (
             <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.3, delay: idx * 0.05 }}
-              whileHover={{ y: -8 }}
-              className={`glass-card rounded-2xl overflow-hidden flex flex-col h-full group hover:shadow-2xl transition-all duration-300 ${
-                isDark ? 'hover:shadow-[#cba6f7]/10' : 'hover:shadow-[#a6662e]/10'
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -10 }}
+              className={`group relative p-6 rounded-2xl border backdrop-blur-sm transition-all duration-300 flex flex-col h-full ${
+                isDark 
+                  ? 'bg-[#1e1e2e]/50 border-[#313244] hover:border-[#89b4fa]/50 hover:shadow-lg hover:shadow-[#89b4fa]/10' 
+                  : 'bg-[#fffcf9]/80 border-[#e3d5ca] hover:border-[#a6662e]/50 hover:shadow-lg hover:shadow-[#a6662e]/10'
               }`}
             >
-              <div className={`h-40 ${project.bgColor} flex items-center justify-center group-hover:scale-105 transition-transform duration-300`}>
-                {project.icon}
-              </div>
-              <div className="p-6 grow flex flex-col">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className={`text-xl font-bold ${isDark ? 'group-hover:text-[#cba6f7] text-[#cdd6f4]' : 'group-hover:text-[#a6662e] text-[#432818]'}`}>
-                    {project.title}
-                  </h3>
-                  <motion.a
-                    whileHover={{ rotate: 20, scale: 1.2 }}
-                    href={project.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={isDark ? 'text-[#a6adc8] hover:text-[#cdd6f4]' : 'text-[#7f5539] hover:text-[#432818]'}
-                  >
+              {/* Icon & Title */}
+              <div className="mb-4 flex items-center justify-between">
+                <div className={`p-3 rounded-lg ${isDark ? 'bg-[#89b4fa]/10 text-[#89b4fa]' : 'bg-[#a6662e]/10 text-[#a6662e]'}`}>
+                  {project.icon}
+                </div>
+                <div className="flex gap-2">
+                  <a href={project.github} className={`p-2 rounded-full hover:bg-black/5 transition-colors ${isDark ? 'text-[#a6adc8] hover:text-white' : 'text-[#7f5539] hover:text-black'}`}>
                     <Github size={20} />
-                  </motion.a>
+                  </a>
+                  {/* Conditional Rendering for Demo Link */}
+                  {project.demo && (
+                    <a href={project.demo} className={`p-2 rounded-full hover:bg-black/5 transition-colors ${isDark ? 'text-[#a6adc8] hover:text-white' : 'text-[#7f5539] hover:text-black'}`}>
+                      <ExternalLink size={20} />
+                    </a>
+                  )}
                 </div>
-                <p className={`text-sm mb-4 ${isDark ? 'text-[#bac2de]' : 'text-[#7f5539]'}`}>
-                  {project.desc}
-                </p>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.tags.map(tag => (
-                    <span
-                      key={tag}
-                      className={`px-2 py-1 rounded-md text-xs border ${
-                        isDark
-                          ? 'bg-[#313244] text-[#89b4fa] border-[#45475a]'
-                          : 'bg-[#e3d5ca] text-[#9c6644] border-[#ddb892]'
-                      }`}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+              </div>
+
+              <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+              
+              <p className={`text-sm mb-6 flex-grow leading-relaxed ${isDark ? 'text-[#a6adc8]' : 'text-[#9c6644]'}`}>
+                {project.description}
+              </p>
+
+              {/* Tech Stack Tags */}
+              <div className="flex flex-wrap gap-2 mt-auto">
+                {project.tech.map((tech, i) => (
+                  <span 
+                    key={i}
+                    className={`text-xs px-3 py-1 rounded-full font-medium ${
+                      isDark 
+                        ? 'bg-[#313244] text-[#cba6f7]' 
+                        : 'bg-[#e3d5ca] text-[#9c6644]'
+                    }`}
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
             </motion.div>
           ))}

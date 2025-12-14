@@ -1,3 +1,5 @@
+import React from 'react';
+
 const LoadingScreen = ({ isDark, loadingProgress }) => {
   return (
     <div
@@ -7,17 +9,17 @@ const LoadingScreen = ({ isDark, loadingProgress }) => {
     >
       <div className="relative flex items-center justify-center scale-150">
         <div className="relative w-16 h-16 z-20">
+          {/* Top Half of Pac-Man */}
           <div
-            className={`absolute top-0 left-0 w-full h-1/2 rounded-t-full animate-[chompTop_0.3s_infinite_alternate_linear] origin-bottom ${
-              isDark ? 'bg-[#f9e2af]' : 'bg-[#df8e1d]'
-            }`}
+            className="absolute top-0 left-0 w-full h-1/2 rounded-t-full animate-[chompTop_0.3s_infinite_alternate_linear] origin-bottom bg-[#FDB813]"
           ></div>
+          {/* Bottom Half of Pac-Man */}
           <div
-            className={`absolute bottom-0 left-0 w-full h-1/2 rounded-b-full animate-[chompBottom_0.3s_infinite_alternate_linear] origin-top ${
-              isDark ? 'bg-[#f9e2af]' : 'bg-[#df8e1d]'
-            }`}
+            className="absolute bottom-0 left-0 w-full h-1/2 rounded-b-full animate-[chompBottom_0.3s_infinite_alternate_linear] origin-top bg-[#FDB813]"
           ></div>
         </div>
+        
+        {/* Dots / Food */}
         <div className="absolute left-8 w-48 h-4 overflow-hidden flex items-center z-10">
           <div
             className={`flex gap-6 animate-[feed_0.4s_linear_infinite] ${
@@ -30,6 +32,8 @@ const LoadingScreen = ({ isDark, loadingProgress }) => {
           </div>
         </div>
       </div>
+      
+      {/* Loading Text */}
       <div
         className={`mt-16 font-bold tracking-widest uppercase animate-pulse flex flex-col items-center gap-2 ${
           isDark ? 'text-[#cba6f7]' : 'text-[#8839ef]'
@@ -58,6 +62,3 @@ const LoadingScreen = ({ isDark, loadingProgress }) => {
 };
 
 export default LoadingScreen;
-
-
-
