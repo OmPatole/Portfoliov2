@@ -141,13 +141,21 @@ const CodingBot = ({ isDark, isExcited }) => {
     setTimeout(() => setIsClicked(false), 2000); 
   };
 
-  const moveX = useTransform(mouseX, [-window.innerWidth / 2, window.innerWidth / 2], [-50, 50]);
-  const moveY = useTransform(mouseY, [-window.innerHeight / 2, window.innerHeight / 2], [-50, 50]);
+  // --- FIX START: Reduced Range & Softer Spring ---
   
-  const rotateX = useTransform(mouseY, [-window.innerHeight / 2, window.innerHeight / 2], [25, -25]); 
-  const rotateY = useTransform(mouseX, [-window.innerWidth / 2, window.innerWidth / 2], [-25, 25]); 
+  // Reduced movement range (was 50, now 20) to prevent erratic jumps
+  const moveX = useTransform(mouseX, [-window.innerWidth / 2, window.innerWidth / 2], [-20, 20]);
+  const moveY = useTransform(mouseY, [-window.innerHeight / 2, window.innerHeight / 2], [-20, 20]);
   
-  const springConfig = { stiffness: 100, damping: 15 };
+  // Reduced rotation range (was 25deg, now 10deg) to prevent "flipping" visual
+  const rotateX = useTransform(mouseY, [-window.innerHeight / 2, window.innerHeight / 2], [10, -10]); 
+  const rotateY = useTransform(mouseX, [-window.innerWidth / 2, window.innerWidth / 2], [-10, 10]); 
+  
+  // Increased damping (friction) significantly to stop jittering on non-GPU screens
+  const springConfig = { stiffness: 40, damping: 30 }; 
+  
+  // --- FIX END ---
+
   const springX = useSpring(moveX, springConfig);
   const springY = useSpring(moveY, springConfig);
   const springRotateX = useSpring(rotateX, springConfig);
@@ -193,7 +201,8 @@ const CodingBot = ({ isDark, isExcited }) => {
           y: springY, 
           rotateX: springRotateX, 
           rotateY: springRotateY, 
-          perspective: 1200 
+          perspective: 1200,
+          willChange: "transform" // Added performance hint
         }}
         className="relative w-[500px] h-full flex items-center justify-center cursor-pointer z-10"
       >
@@ -302,9 +311,6 @@ const Hero = ({ isDark, isVisible, scrollToSection }) => {
   };
 
   return (
-    // FIX APPLIED: 
-    // 1. pt-32: Creates ~48px safe gap between Nav and Content (better than previous 64px or 0px).
-    // 2. pb-48: Increases bottom padding significantly to ensure the 'Code Snippet' never hits the drop-down arrow.
     <section id="about" className="min-h-screen flex flex-col items-center justify-start md:justify-center pt-32 pb-48 md:py-20 px-4 relative overflow-hidden">
       <ParticleNetwork isDark={isDark} />
 
