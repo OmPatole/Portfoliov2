@@ -9,7 +9,7 @@ const Projects = ({ isDark }) => {
       description: "Guest Wi-Fi management system using Ruckus routers and Google Auth.",
       tech: ["Firebase", "Google Auth", "React", "Node.js"],
       icon: <Wifi size={32} />,
-      github: "#"
+      github: "https://github.com/OmPatole/Captive-Portal"
     },
     {
       title: "Music Downloader",
@@ -23,8 +23,8 @@ const Projects = ({ isDark }) => {
       description: "Academic tool for calculating SGPA/CGPA based on university syllabus.",
       tech: ["JavaScript", "HTML/CSS", "Logic"],
       icon: <Calculator size={32} />,
-      github: "#",
-      demo: "#" // Added Demo Link only for this project
+      github: "https://github.com/OmPatole/CGPA-Cal",
+      demo: "https://ompatole.github.io/CGPA-Cal/" // Added Demo Link only for this project
     },
     {
       title: "App Launcher & Updater",
@@ -87,7 +87,7 @@ const Projects = ({ isDark }) => {
 
               <h3 className="text-xl font-bold mb-2">{project.title}</h3>
               
-              <p className={`text-sm mb-6 flex-grow leading-relaxed ${isDark ? 'text-[#a6adc8]' : 'text-[#9c6644]'}`}>
+              <p className={`text-sm mb-6 grow leading-relaxed ${isDark ? 'text-[#a6adc8]' : 'text-[#9c6644]'}`}>
                 {project.description}
               </p>
 

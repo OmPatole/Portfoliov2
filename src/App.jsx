@@ -10,6 +10,10 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import GlobalStyles from './components/GlobalStyles';
 
+// --- LOGO IMPORTS FOR FAVICON ---
+import logoDark from './assets/logo.png';      // Purple Logo (Dark Mode)
+import logoLight from './assets/Wlogopng.png'; // Bronze Logo (Light Mode)
+
 const App = () => {
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -24,6 +28,18 @@ const App = () => {
   const [activeSection, setActiveSection] = useState('about');
   const [isVisible, setIsVisible] = useState(false);
 
+  // --- FAVICON SWITCHING EFFECT ---
+  useEffect(() => {
+    // Select the existing favicon link element from index.html
+    const favicon = document.querySelector("link[rel*='icon']");
+    
+    if (favicon) {
+      // Update the href based on isDark state
+      favicon.href = isDark ? logoDark : logoLight;
+    }
+  }, [isDark]); // Re-run whenever isDark changes
+
+  // --- LOADING SIMULATION ---
   useEffect(() => {
     const totalTime = 2500;
     const interval = 20;
