@@ -1,88 +1,145 @@
-import { Menu, X, Sun, Moon } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { Sun, Moon, Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const Navigation = ({ 
-  isDark, 
-  toggleTheme, 
-  isMenuOpen, 
-  setIsMenuOpen, 
-  activeSection, 
-  scrollToSection, 
-  isVisible 
-}) => {
-  const menuItems = ['About', 'Stack', 'Projects', 'Journey', 'Contact'];
+const Navigation = ({ isDark, toggleTheme }) => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('about');
+  
+  const links = [
+    { name: 'About', href: '#about' },
+    { name: 'Stack', href: '#stack' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Journey', href: '#journey' },
+    { name: 'Contact', href: '#contact' },
+  ];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    links.forEach((link) => {
+      const element = document.querySelector(link.href);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollTo = (id) => {
+    setMobileOpen(false);
+    const element = document.querySelector(id);
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 px-4 py-4 transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
-      <div className="max-w-6xl mx-auto glass-panel rounded-2xl px-6 py-3 flex justify-between items-center">
-        <a href="#" className={`text-xl font-bold tracking-tighter transition-colors ${isDark ? 'hover:text-[#cba6f7] text-[#cdd6f4]' : 'hover:text-[#a6662e] text-[#432818]'}`}>
+    // CHANGED:
+    // 1. Removed "border-b"
+    // 2. Increased blur to "backdrop-blur-2xl"
+    // 3. Lowered opacity to "/30" for better blending
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isDark 
+          ? 'bg-[#0a0a0a]/30 backdrop-blur-2xl' 
+          : 'bg-[#fafafa]/30 backdrop-blur-2xl'
+      }`}>
+      
+      <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between relative">
+        
+        {/* LEFT: Logo */}
+        <button onClick={() => scrollTo('#about')} className="text-xl font-bold tracking-tighter hover:opacity-80 transition-opacity z-20">
           &lt;OP /&gt;
-        </a>
+        </button>
 
-        <div className={`hidden md:flex space-x-8 text-sm font-medium ${isDark ? 'text-[#a6adc8]' : 'text-[#7f5539]'}`}>
-          {menuItems.map((item, i) => (
-            <button 
-              key={item}
-              onClick={() => scrollToSection(item.toLowerCase())}
-              className={`relative hover:text-inherit transition-colors py-1 ${
-                activeSection === item.toLowerCase() 
-                  ? (isDark ? 'text-[#cba6f7]' : 'text-[#a6662e] font-bold')
-                  : isDark ? 'hover:text-[#cdd6f4]' : 'hover:text-[#432818]'
-              }`}
-            >
-              {item}
-              {activeSection === item.toLowerCase() && (
-                <motion.span
-                  layoutId="navIndicator"
-                  className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full ${isDark ? 'bg-[#cba6f7]' : 'bg-[#a6662e]'}`}
-                />
-              )}
-            </button>
+        {/* CENTER: Desktop Navigation */}
+        <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center">
+          {links.map((link, index) => (
+            <div key={link.name} className="flex items-center">
+                <button
+                  onClick={() => scrollTo(link.href)}
+                  className={`text-sm font-medium transition-colors relative ${
+                    activeSection === link.href.substring(1)
+                      ? (isDark ? 'text-white' : 'text-black') 
+                      : (isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black')
+                  }`}
+                >
+                  {link.name}
+                  {activeSection === link.href.substring(1) && (
+                    <motion.div
+                        layoutId="nav-indicator"
+                        className={`absolute -bottom-1 left-0 right-0 h-0.5 rounded-full ${
+                            isDark ? 'bg-blue-500' : 'bg-blue-600'
+                        }`}
+                    />
+                  )}
+                </button>
+                
+                {index < links.length - 1 && (
+                    <span className={`mx-4 text-xs ${isDark ? 'text-gray-800' : 'text-gray-300'}`}>|</span>
+                )}
+            </div>
           ))}
         </div>
 
-        <div className="flex items-center gap-4">
-          <motion.button 
-            whileTap={{ scale: 0.9 }}
+        {/* RIGHT: Theme Toggle & Mobile Menu */}
+        <div className="flex items-center gap-4 z-20">
+          <button 
             onClick={toggleTheme}
-            className={`p-2 rounded-full transition-all shadow-md ${
-              isDark
-                ? 'bg-[#313244] hover:bg-[#45475a] text-[#f9e2af]' // Dark Mode: Dark Blue BG, Yellow Sun
-                : 'bg-black text-white hover:bg-gray-800'           // Light Mode: Black BG, White Moon
+            className={`p-2 rounded-full transition-colors ${
+              isDark ? 'text-gray-400 hover:text-white hover:bg-white/10' : 'text-gray-600 hover:text-black hover:bg-black/5'
             }`}
-            aria-label="Toggle Theme"
           >
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
-          </motion.button>
-          <button 
-            className={`md:hidden active:scale-95 transition-transform ${isDark ? 'text-[#cdd6f4] hover:text-[#cba6f7]' : 'text-[#432818] hover:text-[#a6662e]'}`}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+          
+          <button onClick={() => setMobileOpen(!mobileOpen)} className={`md:hidden ${isDark ? 'text-white' : 'text-black'}`}>
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
-      {isMenuOpen && (
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="absolute top-20 left-4 right-4 glass-panel rounded-xl p-4 flex flex-col space-y-4 md:hidden"
-        >
-          {menuItems.map((item) => (
-            <button 
-              key={item}
-              onClick={() => scrollToSection(item.toLowerCase())}
-              className={`block text-left py-2 px-2 rounded-lg transition-all ${
-                isDark
-                  ? 'text-[#a6adc8] hover:text-[#cdd6f4] hover:bg-[#313244]/50'
-                  : 'text-[#7f5539] hover:text-[#432818] hover:bg-[#e3d5ca]/50'
-              }`}
-            >
-              {item}
-            </button>
-          ))}
-        </motion.div>
-      )}
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            // CHANGED: Added backdrop blur and transparency to mobile menu too
+            className={`md:hidden overflow-hidden backdrop-blur-2xl ${
+                isDark ? 'bg-[#0a0a0a]/90' : 'bg-[#fafafa]/90'
+            }`}
+          >
+            <div className="flex flex-col items-center justify-center p-6 gap-2">
+              {links.map((link, idx) => (
+                <div key={link.name} className="w-full flex flex-col items-center">
+                    <button
+                        onClick={() => scrollTo(link.href)}
+                        className={`text-lg font-medium py-3 w-full text-center transition-colors ${
+                            isDark ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-black'
+                        }`}
+                    >
+                        {link.name}
+                    </button>
+                    
+                    {idx < links.length - 1 && (
+                        <div className={`h-px w-16 rounded-full opacity-50 ${
+                            isDark ? 'bg-white/10' : 'bg-black/10'
+                        }`} />
+                    )}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

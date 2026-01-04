@@ -1,105 +1,89 @@
-import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
+import { Mail, Github, Linkedin } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-// Discord Icon
-const DiscordIcon = ({ size = 24, className }) => (
-  <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037 13.978 13.978 0 0 0-.574 1.181 18.293 18.293 0 0 0-5.56 0 14.28 14.28 0 0 0-.577-1.181.073.073 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-1.287c.126-.094.252-.192.373-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006 1.287 13.04 13.04 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.897 19.897 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.419 0 1.334-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.419 0 1.334-.946 2.419-2.157 2.419z" />
+const XIcon = ({ size = 20 }) => (
+  <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
   </svg>
 );
 
-// X (Twitter) Icon
-const XIcon = ({ size = 24, className }) => (
-  <svg viewBox="0 0 24 24" width={size} height={size} className={className} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+const LeetCodeIcon = ({ size = 20 }) => (
+  <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.843 5.843 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z" />
   </svg>
 );
 
 const Contact = ({ isDark }) => {
   const socialLinks = [
     { 
-      Icon: Github, 
-      label: 'GitHub', 
-      url: 'https://github.com/OmPatole',
-      hoverColor: isDark ? 'hover:text-white' : 'hover:text-black'
+        name: 'LinkedIn', 
+        url: 'https://www.linkedin.com/in/om-patole/',
+        icon: <Linkedin size={24} />,
+        hoverClass: 'hover:text-[#0077B5] hover:border-[#0077B5]/30'
     },
     { 
-      Icon: Linkedin, 
-      label: 'LinkedIn', 
-      url: 'https://www.linkedin.com/in/om-patole/',
-      hoverColor: 'hover:text-[#0A66C2]' // Official LinkedIn Blue
+        name: 'GitHub', 
+        url: 'https://github.com/OmPatole',
+        icon: <Github size={24} />,
+        hoverClass: isDark ? 'hover:text-[#bc8cff] hover:border-[#bc8cff]/30' : 'hover:text-black hover:border-black/30'
+    },
+    {
+        name: 'LeetCode',
+        url: 'https://leetcode.com/u/Om_Patole/',
+        icon: <LeetCodeIcon size={24} />,
+        hoverClass: 'hover:text-[#FFA116] hover:border-[#FFA116]/30'
     },
     { 
-      Icon: XIcon, 
-      label: 'X (Twitter)', 
-      url: 'https://x.com/Om_patole3030',
-      hoverColor: isDark ? 'hover:text-white' : 'hover:text-black'
-    },
-    { 
-      Icon: DiscordIcon, 
-      label: 'Discord', 
-      url: 'https://discord.com/users/deadlytommy108',
-      hoverColor: 'hover:text-[#5865F2]' // Official Discord Blurple
+        name: 'X (Twitter)', 
+        url: 'https://x.com/Om_patole3030',
+        icon: <XIcon size={22} />,
+        hoverClass: isDark ? 'hover:text-white hover:border-white/30' : 'hover:text-black hover:border-black/30'
     },
   ];
 
   return (
-    <section id="contact" className="py-20 px-4 mb-20">
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
+    // CHANGED: Added "md:min-h-screen" and "md:snap-start"
+    <section id="contact" className="w-full py-24 md:py-0 md:min-h-screen md:snap-start flex flex-col justify-center items-center px-6">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        className="max-w-3xl mx-auto glass-panel rounded-3xl p-8 md:p-12 text-center relative overflow-hidden"
+        className={`w-full max-w-4xl py-20 px-8 rounded-2xl border transition-colors duration-300 text-center ${
+            isDark ? 'bg-[#121212] border-white/5' : 'bg-gray-50 border-black/5'
+        }`}
       >
-        {/* Glow effect removed from here */}
-        
-        <h2 className="text-3xl font-bold mb-4">Let's Build Something Amazing</h2>
-        <p className={`mb-6 max-w-lg mx-auto ${isDark ? 'text-[#bac2de]' : 'text-[#7f5539]'}`}>
-          Currently open for freelance opportunities and collaborations. Have a question or just want to say hi?
+        <h2 className="text-4xl font-bold mb-6">Ready to collaborate?</h2>
+        <p className={`text-lg mb-10 max-w-xl mx-auto leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+          Open for development and security opportunities.
         </p>
+        
+        <a 
+          href="mailto:ompatole@proton.me"
+          className={`inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105 mb-12 ${
+            isDark ? 'bg-white text-black' : 'bg-black text-white'
+          }`}
+        >
+          <Mail size={20} />
+          ompatole@proton.me
+        </a>
 
-        <div className={`mt-4 space-y-3 text-sm md:text-base ${isDark ? 'text-[#cdd6f4]' : 'text-[#5c4033]'}`}>
-          <div className="flex flex-col items-center gap-1 md:flex-row md:justify-center md:gap-3">
-            <span className="inline-flex items-center gap-2">
-              <Mail size={18} />
-              <a 
-                href="mailto:ompatole@proton.me?subject=I%20would%20like%20to%20connect" 
-                className={isDark ? 'text-[#89b4fa] hover:underline' : 'text-[#a6662e] hover:underline'}
-              >
-                ompatole@proton.me
-              </a>
-            </span>
-          </div>
-          <div className="flex flex-col items-center gap-1 md:flex-row md:justify-center md:gap-3">
-            <span className="inline-flex items-center gap-2">
-              <Phone size={18} />
-              <a href="tel:+919168267172" className={isDark ? 'text-[#89dceb] hover:underline' : 'text-[#a6662e] hover:underline'}>
-                +91 91682 67172
-              </a>
-            </span>
-          </div>
-          <div className="flex flex-col items-center gap-1 md:flex-row md:justify-center md:gap-3">
-            <span className="inline-flex items-center gap-2">
-              <MapPin size={18} />
-              <span>Kolhapur, Maharashtra, India</span>
-            </span>
-          </div>
-        </div>
-
-        <div className="flex justify-center space-x-6 mt-12">
-          {socialLinks.map(({ Icon, url, label, hoverColor }, i) => (
-            <motion.a
-              key={i}
-              whileHover={{ scale: 1.1, rotate: 6 }}
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`transition-colors transform ${isDark ? 'text-[#a6adc8]' : 'text-[#7f5539]'} ${hoverColor}`}
-              aria-label={label}
-            >
-              <Icon size={28} />
-            </motion.a>
-          ))}
+        <div className="flex flex-wrap justify-center gap-6">
+            {socialLinks.map((social) => (
+                <a 
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`group flex items-center gap-3 px-6 py-4 rounded-xl border border-transparent transition-all duration-300 ${
+                        isDark ? 'bg-white/5 hover:bg-white/10 text-gray-300' : 'bg-white hover:bg-gray-100 text-gray-700 shadow-sm'
+                    } ${social.hoverClass}`}
+                >
+                    <span className="group-hover:scale-110 transition-transform duration-300">
+                        {social.icon}
+                    </span>
+                    <span className="font-medium text-base">{social.name}</span>
+                </a>
+            ))}
         </div>
       </motion.div>
     </section>

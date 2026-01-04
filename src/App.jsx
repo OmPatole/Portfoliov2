@@ -8,11 +8,9 @@ import Projects from './components/Projects';
 import Journey from './components/Journey';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import GlobalStyles from './components/GlobalStyles';
 
-// --- LOGO IMPORTS FOR FAVICON ---
-import logoDark from './assets/logo.png';      // Purple Logo (Dark Mode)
-import logoLight from './assets/Wlogopng.png'; // Bronze Logo (Light Mode)
+import logoDark from './assets/Dark.png';
+import logoLight from './assets/Light.png';
 
 const App = () => {
   const [isDark, setIsDark] = useState(() => {
@@ -23,128 +21,52 @@ const App = () => {
   });
 
   const [isLoading, setIsLoading] = useState(true);
-  const [loadingProgress, setLoadingProgress] = useState(0);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('about');
-  const [isVisible, setIsVisible] = useState(false);
 
-  // --- FAVICON SWITCHING EFFECT ---
   useEffect(() => {
-    // Select the existing favicon link element from index.html
     const favicon = document.querySelector("link[rel*='icon']");
-    
     if (favicon) {
-      // Update the href based on isDark state
       favicon.href = isDark ? logoDark : logoLight;
     }
-  }, [isDark]); // Re-run whenever isDark changes
+  }, [isDark]);
 
-  // --- LOADING SIMULATION ---
   useEffect(() => {
-    const totalTime = 2500;
-    const interval = 20;
-    const steps = totalTime / interval;
-    let currentStep = 0;
-
-    const timer = setInterval(() => {
-      currentStep++;
-      const progress = Math.min((currentStep / steps) * 100, 100);
-      setLoadingProgress(progress);
-
-      if (currentStep >= steps) {
-        clearInterval(timer);
-        setTimeout(() => setIsLoading(false), 400);
-      }
-    }, interval);
-
-    return () => clearInterval(timer);
+    const timer = setTimeout(() => setIsLoading(false), 1200);
+    return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    if (!isLoading) {
-      setIsVisible(true);
-    }
-  }, [isLoading]);
-
-  const scrollToSection = (id) => {
-    setIsMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  useEffect(() => {
-    if (isLoading) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-            entry.target.classList.add('animate-on-scroll');
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    document.querySelectorAll('section').forEach((section) => {
-      observer.observe(section);
-    });
-
-    return () => observer.disconnect();
-  }, [isLoading]);
 
   const toggleTheme = () => setIsDark(!isDark);
 
   if (isLoading) {
-    return <LoadingScreen isDark={isDark} loadingProgress={loadingProgress} />;
+    return <LoadingScreen isDark={isDark} />;
   }
 
   return (
     <div 
-      className={`min-h-screen font-mono transition-colors duration-700 overflow-x-hidden relative ${
+      // CHANGED: Added "md:snap-y md:snap-mandatory" to enforce full-screen stops on desktop
+      className={`relative h-screen w-full overflow-y-scroll md:snap-y md:snap-mandatory scroll-smooth transition-colors duration-500 ${
         isDark 
-          ? 'bg-linear-to-br from-[#1e1e2e] via-[#181825] to-[#11111b] text-[#cdd6f4] selection:bg-[#f5c2e7]/30 selection:text-[#f5c2e7]'
-          : 'bg-[#f4ede4] text-[#432818] selection:bg-[#a6662e]/30 selection:text-[#a6662e]'
+          ? 'bg-[#0a0a0a] text-gray-100 selection:bg-blue-500/30'
+          : 'bg-[#fafafa] text-gray-900 selection:bg-blue-500/20'
       }`}
     >
-      <GlobalStyles isDark={isDark} />
-      <div style={{
-        '--glass-panel-bg': isDark ? 'rgba(30, 30, 46, 0.7)' : 'rgba(255, 255, 255, 0.6)',
-        '--glass-card-bg': isDark ? 'rgba(49, 50, 68, 0.4)' : 'rgba(255, 255, 255, 0.5)',
-        '--glass-card-hover-bg': isDark ? 'rgba(69, 71, 90, 0.6)' : 'rgba(255, 255, 255, 0.8)',
-        '--glass-border': isDark ? 'rgba(147, 153, 178, 0.2)' : 'rgba(127, 85, 57, 0.2)',
-        '--glass-border-hover': isDark ? 'rgba(180, 190, 254, 0.4)' : 'rgba(156, 102, 68, 0.5)',
-      }}>
-        <BackgroundElements isDark={isDark} />
+      <BackgroundElements isDark={isDark} />
+      
+      <Navigation 
+        isDark={isDark} 
+        toggleTheme={toggleTheme} 
+      />
 
-        <Navigation 
-          isDark={isDark}
-          toggleTheme={toggleTheme}
-          isMenuOpen={isMenuOpen}
-          setIsMenuOpen={setIsMenuOpen}
-          activeSection={activeSection}
-          scrollToSection={scrollToSection}
-          isVisible={isVisible}
-        />
-
-        <Hero 
-          isDark={isDark}
-          isVisible={isVisible}
-          scrollToSection={scrollToSection}
-        />
-
+      <main className="w-full max-w-[1920px] mx-auto">
+        <Hero isDark={isDark} />
         <Stack isDark={isDark} />
-
         <Projects isDark={isDark} />
-
         <Journey isDark={isDark} />
-
         <Contact isDark={isDark} />
-
-        <Footer isDark={isDark} />
+      </main>
+      
+      {/* Footer snaps to the end */}
+      <div className="md:snap-start">
+         <Footer isDark={isDark} />
       </div>
     </div>
   );

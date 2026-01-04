@@ -1,117 +1,75 @@
-import { Network, GraduationCap, School } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Journey = ({ isDark }) => {
-  const journeyItems = [
+  const items = [
     {
-      icon: (
-        <Network size={18} className={isDark ? 'text-[#89b4fa]' : 'text-[#1e66f5]'} />
-      ),
-      title: "Intern",
-      date: "Current",
-      org: "Shivaji University Networking Department",
-      desc: "Gaining hands-on experience in network infrastructure, troubleshooting, and system administration.",
-      colorClass: isDark
-        ? 'hover:border-[#89b4fa]/30 group-hover:border-[#89b4fa]'
-        : 'hover:border-[#1e66f5]/30 group-hover:border-[#1e66f5]',
-      titleColor: isDark ? 'text-[#89b4fa]' : 'text-[#1e66f5]',
-      orgColor: isDark ? 'text-[#b4befe]' : 'text-[#7287fd]',
+      year: "Current",
+      role: "Network Security Intern",
+      org: "Shivaji University Networking Dept.",
+      desc: "Managing network infrastructure, firewall rules, and security monitoring."
     },
     {
-      icon: (
-        <GraduationCap
-          size={18}
-          className={isDark ? 'text-[#cba6f7]' : 'text-[#8839ef]'}
-        />
-      ),
-      title: "Bachelor of Engineering",
-      date: "2022 - 2026",
-      org: "School of Engineering & Technology, Shivaji University",
-      desc: "Pursuing degree with focus on Computer Science fundamentals and advanced engineering concepts.",
-      colorClass: isDark
-        ? 'hover:border-[#cba6f7]/30 group-hover:border-[#cba6f7]'
-        : 'hover:border-[#8839ef]/30 group-hover:border-[#8839ef]',
-      titleColor: isDark ? 'text-[#cba6f7]' : 'text-[#8839ef]',
-      orgColor: isDark ? 'text-[#f5c2e7]' : 'text-[#ea76cb]',
+      year: "2022 - Pursuing",
+      role: "Bachelor of Engineering",
+      org: "Shivaji University",
+      desc: "Computer Science & Engineering. Focus on Distributed Systems."
     },
     {
-      icon: (
-        <School size={18} className={isDark ? 'text-[#a6e3a1]' : 'text-[#40a02b]'} />
-      ),
-      title: "HSC (12th Grade)",
-      date: "2020 - 2022",
-      org: "B.M. Rote College, Kolhapur",
-      desc: "Completed Higher Secondary education with focus on Science and Mathematics.",
-      colorClass: isDark
-        ? 'hover:border-[#a6e3a1]/30 group-hover:border-[#a6e3a1]'
-        : 'hover:border-[#40a02b]/30 group-hover:border-[#40a02b]',
-      titleColor: isDark ? 'text-[#a6e3a1]' : 'text-[#40a02b]',
-      orgColor: isDark ? 'text-[#94e2d5]' : 'text-[#179299]',
+      year: "2020 - 2022",
+      role: "Higher Secondary (HSC)",
+      org: "B.M. Rote College",
+      desc: "Science & Mathematics focus."
     },
     {
-      icon: (
-        <School size={18} className={isDark ? 'text-[#f9e2af]' : 'text-[#df8e1d]'} />
-      ),
-      title: "SSC (10th Grade)",
-      date: "Completed",
+      year: "2020",
+      role: "Secondary School (SSC)",
       org: "New Model English School, Kolhapur",
-      desc: "Foundation building in secondary education.",
-      colorClass: isDark
-        ? 'hover:border-[#f9e2af]/30 group-hover:border-[#f9e2af]'
-        : 'hover:border-[#df8e1d]/30 group-hover:border-[#df8e1d]',
-      titleColor: isDark ? 'text-[#f9e2af]' : 'text-[#df8e1d]',
-      orgColor: isDark ? 'text-[#fab387]' : 'text-[#fe640b]',
+      desc: "Completed secondary education."
     }
   ];
 
   return (
-    <section id="journey" className="py-20 px-4 pb-32 relative overflow-hidden">
-      <div className="max-w-4xl mx-auto relative z-10">
-        <h2 className="text-3xl font-bold mb-24 text-center">
-          <span
-            className={`border-b-2 pb-2 ${isDark ? 'border-[#89b4fa]' : 'border-[#1e66f5]'}`}
-          >
-            My Journey
-          </span>
-        </h2>
-        
-        <div className="relative">
-          {/* Animated Line - Extended top and bottom */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-            className={`absolute left-5 md:left-1/2 -translate-x-px md:-translate-x-1/2 h-[135%] -top-[10%] w-0.5 bg-linear-to-b from-transparent via-10% to-transparent ${
-              isDark ? 'via-[#585b70]' : 'via-[#acb0be]'
-            }`}
-          />
+    // CHANGED: Added "md:min-h-screen" and "md:snap-start"
+    <section id="journey" className="w-full py-24 md:py-0 md:min-h-screen md:snap-start flex flex-col justify-center px-6 md:px-20 lg:px-32">
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold mb-4">Experience & Education</h2>
+        <div className={`h-px w-20 ${isDark ? 'bg-blue-500' : 'bg-blue-600'}`} />
+      </div>
 
-          <div className="space-y-8 relative">
-            {journeyItems.map((item, idx) => (
-              <motion.div 
-                key={idx} 
-                initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
-              >
-                <div className={`flex items-center justify-center w-10 h-10 rounded-full border bg-slate-900 glass-card shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 group-hover:scale-110 transition-transform duration-300 ${isDark ? 'border-white/20' : 'border-slate-300'} ${item.colorClass}`}>
-                  {item.icon}
-                </div>
-                <div className={`w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card p-6 rounded-xl border border-white/10 transition-all duration-300 hover:-translate-y-1 ${isDark ? 'hover:bg-white/5' : 'hover:bg-white/40'} ${item.colorClass}`}>
-                  <div className="flex justify-between items-center mb-1">
-                    <h3 className={`font-bold text-lg ${item.titleColor}`}>{item.title}</h3>
-                    <time className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.date}</time>
-                  </div>
-                  <div className={`text-sm mb-2 ${item.orgColor}`}>{item.org}</div>
-                  <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+      <div className="relative space-y-24 pl-6 md:pl-0">
+        <div 
+            className={`absolute left-1.5 md:left-[8.5rem] top-2 bottom-2 w-px ${
+                isDark ? 'bg-white/10' : 'bg-black/10'
+            }`} 
+        />
+
+        {items.map((item, idx) => (
+          <motion.div 
+            key={idx}
+            initial={{ opacity: 0, x: -10 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.1 }}
+            className="relative flex flex-col md:flex-row md:items-start gap-2 md:gap-8"
+          >
+            <span className={`absolute -left-[1.35rem] md:left-[8.2rem] top-1.5 h-3 w-3 rounded-full border-2 z-10 ${
+                  isDark 
+                  ? 'bg-[#0a0a0a] border-blue-500' 
+                  : 'bg-[#fafafa] border-blue-600'
+            }`} />
+
+            <div className={`w-32 shrink-0 text-sm font-mono pt-0.5 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+                {item.year}
+            </div>
+            <div className="">
+                <h3 className="text-lg font-bold">{item.role}</h3>
+                <div className={`text-sm font-medium mb-1 ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>{item.org}</div>
+                <p className={`text-base max-w-lg ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                    {item.desc}
+                </p>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );
