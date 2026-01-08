@@ -38,7 +38,7 @@ const Journey = ({ isDark }) => {
 
       <div className="relative space-y-24 pl-6 md:pl-0">
         <div 
-            className={`absolute left-1.5 md:left-[8.5rem] top-2 bottom-2 w-px ${
+            className={`absolute left-1.5 md:left-34 top-2 bottom-2 w-px ${
                 isDark ? 'bg-white/10' : 'bg-black/10'
             }`} 
         />

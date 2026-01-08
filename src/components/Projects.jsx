@@ -101,7 +101,7 @@ const Projects = ({ isDark }) => {
             
             <h3 className="text-xl font-bold mb-2">{project.title}</h3>
             
-            <p className={`text-sm mb-6 leading-relaxed flex-grow ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+            <p className={`text-sm mb-6 leading-relaxed grow ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
               {project.description}
             </p>
 
