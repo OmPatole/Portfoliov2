@@ -4,6 +4,14 @@ import { Github, ExternalLink, ArrowUpRight } from 'lucide-react';
 const Projects = ({ isDark }) => {
   const projects = [
     {
+      title: "XeroGuard",
+      type: "Security",
+      description: "Document privacy solution controlling print permissions & encryption.",
+      tech: ["React.js", "Node.js", "Encryption"],
+      github: "#", 
+      link: "#"
+    },
+    {
       title: "Secure Captive Portal",
       type: "Security",
       description: "Enterprise Wi-Fi management with Ruckus & Google Auth.",
@@ -21,24 +29,23 @@ const Projects = ({ isDark }) => {
     },
     {
       title: "Music Downloader",
-      type: "Desktop App",
+      type: "Web App",
       description: "Automated song downloader with metadata tagging.",
-      tech: ["Electron", "Node.js", "API"],
+      tech: ["ReactJS", "Node.js", "API"],
       github: "#",
       link: "#"
     },
     {
-      title: "System Updater",
-      type: "System Tool",
-      description: "Windows utility for organizing & updating apps.",
-      tech: ["PowerShell", "WinAPI"],
+      title: "Promptforge",
+      type: "Upskilling",
+      description: "Web app for upskilling your prompting skills.",
+      tech: ["ReactJS", "Tailwindcss","Node.js"],
       github: "#",
       link: "#"
     }
   ];
 
   return (
-    // CHANGED: Added "md:min-h-screen" and "md:snap-start"
     <section id="projects" className="w-full py-24 md:py-0 md:min-h-screen md:snap-start flex flex-col justify-center px-6 md:px-20 lg:px-32">
       <div className="mb-12 flex items-end justify-between">
         <div>
@@ -55,7 +62,8 @@ const Projects = ({ isDark }) => {
         </a>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* CHANGED: Increased gap-6 to gap-10 for more spacing between cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
         {projects.map((project, index) => (
           <motion.div
             key={index}
@@ -63,10 +71,10 @@ const Projects = ({ isDark }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
-            className={`group relative p-6 rounded-xl border transition-all duration-300 flex flex-col ${
+            className={`group relative p-6 rounded-xl border transition-all duration-300 flex flex-col backdrop-blur-md ${
               isDark 
-                ? 'bg-[#121212] border-white/10 hover:border-white/20' 
-                : 'bg-white border-black/5 hover:border-black/20 shadow-sm'
+                ? 'bg-white/5 border-white/10 hover:border-white/20' 
+                : 'bg-white/40 border-black/5 hover:border-black/20 shadow-sm'
             }`}
           >
             <div className="flex justify-between items-start mb-4">

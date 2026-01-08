@@ -56,8 +56,8 @@ const BackgroundElements = ({ isDark }) => {
   }, [x1, y1, x2, y2]);
 
   const maskImage = useMotionTemplate`
-    radial-gradient(650px circle at ${x1}px ${y1}px, white, transparent),
-    radial-gradient(650px circle at ${x2}px ${y2}px, white, transparent)
+    radial-gradient(350px circle at ${x1}px ${y1}px, white, transparent),
+    radial-gradient(350px circle at ${x2}px ${y2}px, white, transparent)
   `;
 
   return (
@@ -80,11 +80,9 @@ const BackgroundElements = ({ isDark }) => {
           '--dot-color': glowDotColor,
           maskImage: maskImage,
           WebkitMaskImage: maskImage,
-          filter: isDark ? 'drop-shadow(0 0 6px rgba(56, 189, 248, 0.6))' : 'none',
+          filter: isDark ? 'drop-shadow(0 0 2px rgba(56, 189, 248, 0.6))' : 'none',
         }}
       />
-
-      {/* REMOVED: Vignette overlay div was here */}
     </div>
   );
 };

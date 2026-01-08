@@ -54,10 +54,12 @@ const Hero = ({ isDark }) => {
           </a>
           <button
             onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium border transition-all ${
+            // CHANGED: Added backdrop-blur-sm and low opacity background colors (bg-white/10 and bg-black/5)
+            // to make the button translucent instead of transparent.
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium border transition-all backdrop-blur-sm ${
               isDark 
-                ? 'border-white/20 hover:bg-white/5 text-white' 
-                : 'border-black/20 hover:bg-black/5 text-black'
+                ? 'bg-white/10 border-white/20 hover:bg-white/20 text-white' 
+                : 'bg-black/5 border-black/20 hover:bg-black/10 text-black'
             }`}
           >
             Projects

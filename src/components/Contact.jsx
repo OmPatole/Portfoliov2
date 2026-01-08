@@ -48,8 +48,9 @@ const Contact = ({ isDark }) => {
         initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        className={`w-full max-w-4xl py-20 px-8 rounded-2xl border transition-colors duration-300 text-center ${
-            isDark ? 'bg-[#121212] border-white/5' : 'bg-gray-50 border-black/5'
+        // CHANGED: Swapped solid bg-[#121212]/bg-gray-50 for translucent bg-white/5 / bg-white/40 + backdrop-blur-md
+        className={`w-full max-w-4xl py-20 px-8 rounded-2xl border transition-colors duration-300 text-center backdrop-blur-md ${
+            isDark ? 'bg-white/5 border-white/5' : 'bg-white/40 border-black/5'
         }`}
       >
         <h2 className="text-4xl font-bold mb-6">Ready to collaborate?</h2>
@@ -74,8 +75,9 @@ const Contact = ({ isDark }) => {
                     href={social.url}
                     target="_blank"
                     rel="noreferrer"
-                    className={`group flex items-center gap-3 px-6 py-4 rounded-xl border border-transparent transition-all duration-300 ${
-                        isDark ? 'bg-white/5 hover:bg-white/10 text-gray-300' : 'bg-white hover:bg-gray-100 text-gray-700 shadow-sm'
+                    // CHANGED: Added backdrop-blur-sm. Changed Light Mode to bg-white/40 (translucent).
+                    className={`group flex items-center gap-3 px-6 py-4 rounded-xl border border-transparent transition-all duration-300 backdrop-blur-sm ${
+                        isDark ? 'bg-white/5 hover:bg-white/10 text-gray-300' : 'bg-white/40 hover:bg-white/60 text-gray-700 shadow-sm'
                     } ${social.hoverClass}`}
                 >
                     <span className="group-hover:scale-110 transition-transform duration-300">

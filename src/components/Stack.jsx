@@ -42,10 +42,11 @@ const Stack = ({ isDark }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: (idx * 0.03) + delayOffset }}
-            className={`flex flex-col items-center justify-center p-4 rounded-xl border transition-all duration-300 hover:-translate-y-1 ${
+            // CHANGED: Added backdrop-blur-sm. Changed Light Mode to bg-white/40 (translucent).
+            className={`flex flex-col items-center justify-center p-4 rounded-xl border transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm ${
               isDark 
                 ? 'bg-white/5 border-white/5 hover:border-white/20 text-gray-400 hover:text-white' 
-                : 'bg-gray-50 border-black/5 hover:border-black/20 text-gray-600 hover:text-black'
+                : 'bg-white/40 border-black/5 hover:border-black/20 text-gray-600 hover:text-black'
             }`}
           >
             <div className="mb-2">{tech.icon}</div>
