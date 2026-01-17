@@ -320,7 +320,7 @@ const TUI = () => {
         <fieldset className="border border-[#cdd6f4]/30 rounded-sm p-3 my-4 max-w-full">
             <legend className="px-2 text-[#a6adc8] text-xs font-bold">{name}</legend>
             <div 
-                className="whitespace-pre-wrap break-words leading-relaxed text-[#cdd6f4]"
+                className="whitespace-pre-wrap wrap-break-word leading-relaxed text-[#cdd6f4]"
                 dangerouslySetInnerHTML={{ __html: processedContent }}
             />
         </fieldset>
@@ -329,7 +329,7 @@ const TUI = () => {
 
   return (
     <div 
-      className="fixed inset-0 z-[9999] bg-[#1e1e2e] text-[#cdd6f4] font-mono text-sm md:text-base overflow-hidden p-4 md:p-8"
+      className="fixed inset-0 z-9999 bg-[#1e1e2e] text-[#cdd6f4] font-mono text-sm md:text-base overflow-hidden p-4 md:p-8"
       onClick={() => inputRef.current?.focus()}
     >
       {isBooting ? (
@@ -364,7 +364,7 @@ const TUI = () => {
                     ) : entry.type === 'file-view' ? (
                         <FileView name={entry.data.name} content={entry.data.content} />
                     ) : (
-                        <div className="text-[#cdd6f4] pl-0 opacity-90 leading-relaxed whitespace-pre-wrap break-words">
+                        <div className="text-[#cdd6f4] pl-0 opacity-90 leading-relaxed whitespace-pre-wrap wrap-break-word">
                             {(entry.data || []).map((line, idx) => (
                                 <div key={idx} dangerouslySetInnerHTML={{ __html: line }} />
                             ))}
