@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /cgi-bin/
+
+# Specific rules for better SEO
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://ompatole.tech/sitemap.xml
