@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 const Journey = ({ isDark }) => {
   const items = [
     {
-      year: "Current",
+      year: "2025 - 2026",
       role: "Network Security Intern",
       org: "Shivaji University Networking Dept.",
       desc: "Managing network infrastructure, firewall rules, and security monitoring."
