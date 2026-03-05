@@ -4,18 +4,26 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/png" href="/Dark.png" />
+  <!-- Google Fonts: Anton + Bebas Neue (brutalist headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Om Patole | Software Developer | Cloud Learner</title>
+  <link rel="canonical" href="https://ompatole.tech/" />
+  <link rel="alternate" type="application/pdf" title="Resume - Om Patole" href="/Resume.pdf" />
+  <title>Om Patole | MERN Stack Developer</title>
   <meta name="description"
-    content="Portfolio of Om Patole, a Software Developer and Cloud Learner showcasing projects, skills, and journey. Open for development and security opportunities." />
+    content="Portfolio of Om Patole, a MERN Stack Developer specialising in full-stack web apps and security. Open for development and internship opportunities." />
   <meta name="keywords"
-    content="Om Patole, Software Developer, Cloud Learner, React, MERN Stack, Portfolio, Web Development, Cybersecurity" />
+    content="Om Patole, MERN Stack Developer, React, Node.js, MongoDB, Express, Full Stack, Portfolio, Web Development, Cybersecurity" />
   <meta name="author" content="Om Patole" />
 
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ompatole.tech/" />
-  <meta property="og:title" content="Om Patole | Software Developer | Cloud Learner" />
+  <meta property="og:title" content="Om Patole | MERN Stack Developer" />
   <meta property="og:description"
     content="Portfolio of Om Patole, showcasing projects in Web Development and Cybersecurity." />
   <meta property="og:image" content="/Dark.png" />
@@ -23,7 +31,7 @@
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://ompatole.tech/" />
-  <meta property="twitter:title" content="Om Patole | Software Developer | Cloud Learner" />
+  <meta property="twitter:title" content="Om Patole | MERN Stack Developer" />
   <meta property="twitter:description"
     content="Portfolio of Om Patole, showcasing projects in Web Development and Cybersecurity." />
   <meta property="twitter:image" content="/Dark.png" />
@@ -35,7 +43,7 @@
       "@type": "Person",
       "name": "Om Patole",
       "url": "https://ompatole.tech/",
-      "jobTitle": "Software Developer",
+      "jobTitle": "MERN Stack Developer",
       "image": "/Dark.png",
       "sameAs": [
         "https://www.linkedin.com/in/om-patole/",
@@ -46,11 +54,21 @@
       "email": "ompatole@proton.me"
     }
     </script>
-  <script type="module" crossorigin src="/assets/index-BLL9OPcV.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-BkWh8qRM.css">
+  <script type="module" crossorigin src="/assets/index-Cvzu8lHN.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-Du1KVnZZ.css">
 </head>
 
 <body>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var redirectedPath = params.get('p');
+      if (redirectedPath) {
+        var decodedPath = decodeURIComponent(redirectedPath);
+        window.history.replaceState(null, '', decodedPath);
+      }
+    })();
+  </script>
   <div id="root"></div>
 </body>
 
