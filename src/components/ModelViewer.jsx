@@ -52,8 +52,8 @@ export default function RoverSection() {
   const controlDistance = isMobile ? 195 : 380
 
   const roverParagraph = isMobile
-    ? "Perseverance is exploring Jezero Crater to look for ancient microbial life and collect rock cores for future return to Earth."
-    : "NASA's Mars 2020 Perseverance Rover is exploring Jezero Crater to search for signs of ancient microbial life, study the planet's climate and geology, and collect carefully selected rock cores for a future sample return mission to Earth. Its onboard instruments, including SHERLOC and PIXL, analyze minerals and organic compounds at microscopic scale, while the Ingenuity helicopter technology demonstration helped validate powered flight in the thin Martian atmosphere and opened new possibilities for robotic exploration."
+    ? "I integrate 3D models into websites with optimized assets, responsive camera framing, and smooth interactions for touch and desktop."
+    : "I integrate 3D models into websites by optimizing assets (DRACO compression, preload), wiring them into React Three Fiber, and tuning camera, lighting, and controls for a smooth, responsive experience. The workflow covers clean loading states, performance-friendly settings (DPR, shadows), and mobile-first framing so the scene looks intentional on any screen. I also craft interaction details like constrained orbit, touch-safe gestures, and subtle motion that keeps the model feeling alive without overwhelming the page. When needed, I set up lighting rigs, HDR environments, and material tweaks so the model reads clearly in a dark UI and stays crisp at multiple distances. I focus on measurable performance too: minimizing draw calls, keeping textures within budget, and targeting steady 60 FPS on mid-range laptops while preserving visual fidelity."
 
   return (
     <section
