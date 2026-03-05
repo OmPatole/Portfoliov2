@@ -20,6 +20,7 @@ const stagger = {
 const links = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/om-patole/' },
   { label: 'GitHub', href: 'https://github.com/OmPatole' },
+  { label: 'Twitter', href: 'https://x.com/Om_patole3030' },
   { label: 'Email', href: 'mailto:ompatole@proton.me' },
   { label: 'LeetCode', href: 'https://leetcode.com/u/Om_Patole/' },
 ]

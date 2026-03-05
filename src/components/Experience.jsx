@@ -20,7 +20,7 @@ const stagger = {
 const roles = [
     {
         id: 'vidyanta',
-        period: '2025',
+        period: '2026',
         company: 'Vidyanta Tech',
         role: 'Senior Developer',
         type: 'Freelance Startup',
@@ -30,7 +30,7 @@ const roles = [
     },
     {
         id: 'nasscom',
-        period: '2024',
+        period: '2025',
         company: 'NASSCOM FutureSkills Prime',
         role: 'Generative AI Intern',
         type: 'Industry Internship',
@@ -40,7 +40,7 @@ const roles = [
     },
     {
         id: 'shu',
-        period: '2024',
+        period: '2025-2026',
         company: 'Shivaji University',
         role: 'Technical Intern',
         type: 'Networking Unit',

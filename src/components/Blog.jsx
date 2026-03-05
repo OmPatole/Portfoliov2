@@ -19,44 +19,12 @@ const stagger = {
 /* ── Article data ──────────────────────────────────────────── */
 const articles = [
     {
-        id: 'zero-trust',
-        title: 'Zero Trust Is Not a Product',
-        subtitle: 'Why most "zero-trust" implementations miss the point entirely.',
-        date: 'Feb 2025',
-        tag: 'Security',
-        readTime: '6 min read',
-    },
-    {
-        id: 'mern-at-scale',
-        title: 'MERN at Scale: What They Don\'t Tell You',
-        subtitle: 'Hard lessons from building and maintaining production Node/React apps.',
-        date: 'Jan 2025',
-        tag: 'Full Stack',
-        readTime: '9 min read',
-    },
-    {
-        id: 'llm-prompt-eng',
-        title: 'Prompt Engineering Is Still Engineering',
-        subtitle: 'Lessons from my time building LLM pipelines at NASSCOM.',
-        date: 'Dec 2024',
-        tag: 'AI / GenAI',
-        readTime: '7 min read',
-    },
-    {
-        id: 'mongodb-tips',
-        title: 'MongoDB Schema Design for MERN Devs',
-        subtitle: 'Aggregation pipelines, indexes, and embed-vs-reference decisions explained clearly.',
-        date: 'Nov 2024',
-        tag: 'Database',
-        readTime: '8 min read',
-    },
-    {
-        id: 'framer-tricks',
-        title: 'Framer Motion Tricks I Use Every Day',
-        subtitle: 'From layout animations to shared element transitions — the practical ones.',
-        date: 'Oct 2024',
-        tag: 'Frontend',
-        readTime: '5 min read',
+        id: 'cyber-awareness-social-media',
+        title: 'Cyber Awareness: How Social Media Can Expose Your Data',
+        subtitle: 'A practical guide to what gets public, how leaks happen, and what you can do today.',
+        date: 'Mar 2026',
+        tag: 'Cyber Awareness',
+        readTime: '11 min read',
     },
 ]
 
@@ -70,9 +38,8 @@ function ArticleRow({ article, index }) {
                 borderTop: '1px solid #1a1a1a',
             }}
         >
-            <a
-                href="#"
-                onClick={(e) => e.preventDefault()}
+            <Link
+                to={`/blog/${article.id}`}
                 style={{
                     textDecoration: 'none',
                     display: 'grid',
@@ -165,7 +132,7 @@ function ArticleRow({ article, index }) {
                     {/* Static arrow */}
                     <span style={{ fontSize: '1rem', color: '#f5f5f5' }}>↗</span>
                 </div>
-            </a>
+            </Link>
         </motion.div>
     )
 }

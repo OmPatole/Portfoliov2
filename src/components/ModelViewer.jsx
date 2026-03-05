@@ -46,7 +46,7 @@ export default function RoverSection() {
     return () => media.removeEventListener('change', update)
   }, [])
 
-  const modelScale = isMobile ? 14 : 40
+  const modelScale = isMobile ? 14 : 43
   const modelPosition = isMobile ? [48, -88, 0] : [130, -85, 20]
   const cameraPosition = isMobile ? [140, 52, 140] : [260, 95, 260]
   const controlDistance = isMobile ? 195 : 380

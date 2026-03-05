@@ -64,14 +64,32 @@ body {
   filter: invert(1);
 }
 
-/* ── Blog article row — full invert on hover ─────────────────── */
+/* ── Blog article row — subtle background sweep ───────────────── */
 .article-row {
-  transition: filter 0.1s ease;
+  position: relative;
   cursor: pointer;
+  overflow: hidden;
 }
 
-.article-row:hover {
-  filter: invert(1);
+.article-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #141414;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.article-row:hover::before {
+  transform: scaleX(1);
+}
+
+.article-row > a {
+  position: relative;
+  z-index: 1;
 }
 
 /* ── Project row — background sweep, text stays white ─────────── */

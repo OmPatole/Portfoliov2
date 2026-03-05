@@ -21,7 +21,7 @@ const projects = [
   {
     id: 'quiz-app',
     name: 'QUIZ APP',
-    year: '2025',
+    year: '2026',
     category: 'Full Stack',
     description:
       'Full-featured quiz platform with separate Admin and Student portals. CSV bulk question import, JWT-secured auth, real-time leaderboards, and performance analytics via Recharts.',
@@ -31,7 +31,7 @@ const projects = [
   {
     id: 'captive-portal',
     name: 'CAPTIVE PORTAL',
-    year: '2024',
+    year: '2025',
     category: 'Networking',
     description:
       'Wi-Fi captive portal for university network access control. Google OAuth login, Firebase session management, and Ruckus SmartZone API integration for real-time device authorization.',
@@ -41,7 +41,7 @@ const projects = [
   {
     id: 'xeroguard',
     name: 'XEROGUARD',
-    year: '2024',
+    year: '2026',
     category: 'Security',
     description:
       'Document privacy solution that detects, redacts, and watermarks sensitive information in files before sharing. Zero-trust approach to document handling.',
@@ -51,7 +51,7 @@ const projects = [
   {
     id: 'cgpa-calc',
     name: 'CGPA CALC',
-    year: '2023',
+    year: '2025',
     category: 'Utility',
     description:
       'Real-time CGPA and SGPA calculator for Indian university students. Dynamic course entry, grade point mapping, and instant cumulative GPA calculation.',

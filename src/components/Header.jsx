@@ -110,7 +110,7 @@ export default function Header() {
           <Link
             to="/blog"
             className="nav-link"
-            style={{ color: location.pathname === '/blog' ? '#f5f5f5' : undefined }}
+            style={{ color: location.pathname.startsWith('/blog') ? '#f5f5f5' : undefined }}
           >
             BLOG
           </Link>
