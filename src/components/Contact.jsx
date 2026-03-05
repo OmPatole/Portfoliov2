@@ -1,95 +1,256 @@
-import { Mail, Github, Linkedin } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 
-const XIcon = ({ size = 20 }) => (
-  <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
-  </svg>
-);
+/* ── Scroll reveal ─────────────────────────────────────────── */
+const revealUp = {
+  hidden: { opacity: 0, y: 40 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+}
 
-const LeetCodeIcon = ({ size = 20 }) => (
-  <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.843 5.843 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z" />
-  </svg>
-);
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
+}
 
-const Contact = ({ isDark }) => {
-  const socialLinks = [
-    { 
-        name: 'LinkedIn', 
-        url: 'https://www.linkedin.com/in/om-patole/',
-        icon: <Linkedin size={24} />,
-        hoverClass: 'hover:text-[#0077B5] hover:border-[#0077B5]/30'
-    },
-    { 
-        name: 'GitHub', 
-        url: 'https://github.com/OmPatole',
-        icon: <Github size={24} />,
-        hoverClass: isDark ? 'hover:text-[#bc8cff] hover:border-[#bc8cff]/30' : 'hover:text-black hover:border-black/30'
-    },
-    {
-        name: 'LeetCode',
-        url: 'https://leetcode.com/u/Om_Patole/',
-        icon: <LeetCodeIcon size={24} />,
-        hoverClass: 'hover:text-[#FFA116] hover:border-[#FFA116]/30'
-    },
-    { 
-        name: 'X (Twitter)', 
-        url: 'https://x.com/Om_patole3030',
-        icon: <XIcon size={22} />,
-        hoverClass: isDark ? 'hover:text-white hover:border-white/30' : 'hover:text-black hover:border-black/30'
-    },
-  ];
+/* ── Social links ──────────────────────────────────────────── */
+const links = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/om-patole/' },
+  { label: 'GitHub', href: 'https://github.com/OmPatole' },
+  { label: 'Email', href: 'mailto:ompatole@proton.me' },
+  { label: 'LeetCode', href: 'https://leetcode.com/u/Om_Patole/' },
+]
 
+function ContactLink({ label, href }) {
+  const [hovered, setHovered] = useState(false)
   return (
-    // CHANGED: Added "md:min-h-screen" and "md:snap-start"
-    <section id="contact" className="w-full py-24 md:py-0 md:min-h-screen md:snap-start flex flex-col justify-center items-center px-6">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        // CHANGED: Swapped solid bg-[#121212]/bg-gray-50 for translucent bg-white/5 / bg-white/40 + backdrop-blur-md
-        className={`w-full max-w-4xl py-20 px-8 rounded-2xl border transition-colors duration-300 text-center backdrop-blur-md ${
-            isDark ? 'bg-white/5 border-white/5' : 'bg-white/40 border-black/5'
-        }`}
+    <motion.a
+      href={href}
+      target={href.startsWith('mailto') ? undefined : '_blank'}
+      rel="noopener noreferrer"
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+      className="contact-link"
+      style={{
+        fontFamily: "'Inter', sans-serif",
+        fontSize: 'clamp(0.65rem, 1vw, 0.75rem)',
+        letterSpacing: '0.25em',
+        textTransform: 'uppercase',
+        color: hovered ? '#f5f5f5' : '#888',
+        transition: 'color 0.2s ease',
+      }}
+    >
+      {label}
+      <motion.span
+        animate={hovered ? { x: 3, y: -3 } : { x: 0, y: 0 }}
+        transition={{ duration: 0.2 }}
+        style={{ fontSize: '0.7rem' }}
       >
-        <h2 className="text-4xl font-bold mb-6">Ready to collaborate?</h2>
-        <p className={`text-lg mb-10 max-w-xl mx-auto leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-          Open for development and security opportunities.
-        </p>
-        
-        <a 
-          href="mailto:ompatole@proton.me"
-          className={`inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105 mb-12 ${
-            isDark ? 'bg-white text-black' : 'bg-black text-white'
-          }`}
+        ↗
+      </motion.span>
+    </motion.a>
+  )
+}
+
+export default function Contact() {
+  return (
+    <section
+      id="contact"
+      style={{
+        backgroundColor: '#0a0a0a',
+        padding: 'clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 3rem) clamp(3rem, 6vw, 5rem)',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+      }}
+    >
+      {/* ── Max-width centred container ── */}
+      <div style={{ maxWidth: '1024px', margin: '0 auto', width: '100%', flex: 1, display: 'flex', flexDirection: 'column' }}>
+
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-80px' }}
+          style={{ flex: 1, display: 'flex', flexDirection: 'column' }}
         >
-          <Mail size={20} />
-          ompatole@proton.me
-        </a>
+          {/* Divider */}
+          <motion.div variants={revealUp} className="divider" style={{ marginBottom: '3rem' }} />
 
-        <div className="flex flex-wrap justify-center gap-6">
-            {socialLinks.map((social) => (
-                <a 
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    // CHANGED: Added backdrop-blur-sm. Changed Light Mode to bg-white/40 (translucent).
-                    className={`group flex items-center gap-3 px-6 py-4 rounded-xl border border-transparent transition-all duration-300 backdrop-blur-sm ${
-                        isDark ? 'bg-white/5 hover:bg-white/10 text-gray-300' : 'bg-white/40 hover:bg-white/60 text-gray-700 shadow-sm'
-                    } ${social.hoverClass}`}
-                >
-                    <span className="group-hover:scale-110 transition-transform duration-300">
-                        {social.icon}
-                    </span>
-                    <span className="font-medium text-base">{social.name}</span>
-                </a>
-            ))}
-        </div>
-      </motion.div>
+          <motion.span
+            variants={revealUp}
+            style={{
+              fontFamily: "'Oswald', sans-serif",
+              fontSize: '0.65rem',
+              letterSpacing: '0.35em',
+              color: '#888',
+              textTransform: 'uppercase',
+              display: 'block',
+              marginBottom: '2.5rem',
+            }}
+          >
+            04 — Contact
+          </motion.span>
+
+          {/* ── "LET'S TALK" — centred, dominates screen ── */}
+          <motion.div
+            variants={revealUp}
+            style={{ textAlign: 'center', marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}
+          >
+            <h2
+              style={{
+                fontFamily: "'Anton', sans-serif",
+                fontSize: 'clamp(4rem, 18vw, 16rem)',
+                lineHeight: 0.85,
+                letterSpacing: '-0.02em',
+                color: '#f5f5f5',
+                textTransform: 'uppercase',
+              }}
+            >
+              LET'S<br />TALK
+            </h2>
+          </motion.div>
+
+          {/* ── Sub-copy + Email CTA — centred ── */}
+          <motion.div
+            variants={revealUp}
+            style={{ textAlign: 'center', marginBottom: 'clamp(2rem, 4vw, 3.5rem)' }}
+          >
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: 'clamp(0.75rem, 1.2vw, 0.9rem)',
+                color: '#c0c0c0',
+                lineHeight: 1.8,
+                marginBottom: '1.5rem',
+                maxWidth: '420px',
+                margin: '0 auto 1.5rem',
+              }}
+            >
+              Open to internships, full-time roles, freelance projects,<br />
+              and collaboration on interesting ideas.
+            </p>
+            <motion.a
+              href="mailto:ompatole@proton.me"
+              style={{
+                fontFamily: "'Oswald', sans-serif",
+                fontSize: 'clamp(0.85rem, 1.5vw, 1.05rem)',
+                letterSpacing: '0.15em',
+                color: '#888',
+                textDecoration: 'none',
+                textTransform: 'uppercase',
+                display: 'inline-block',
+                transition: 'color 0.2s',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = '#f5f5f5')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = '#888')}
+              whileHover={{ x: 6 }}
+              transition={{ duration: 0.2 }}
+            >
+              ompatole@proton.me →
+            </motion.a>
+          </motion.div>
+
+          {/* ── Divider before education ── */}
+          <motion.div
+            variants={revealUp}
+            style={{
+              width: '100%',
+              height: '1px',
+              background: '#1a1a1a',
+              marginBottom: 'clamp(2rem, 4vw, 3rem)',
+            }}
+          />
+
+          {/* ── Education block ── */}
+          <motion.div
+            variants={revealUp}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              textAlign: 'center',
+              gap: '0.5rem',
+              marginBottom: 'clamp(2rem, 4vw, 3rem)',
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "'Oswald', sans-serif",
+                fontSize: '0.65rem',
+                letterSpacing: '0.35em',
+                color: '#888',
+                textTransform: 'uppercase',
+                display: 'block',
+                marginBottom: '1rem',
+              }}
+            >
+              Education
+            </span>
+
+            <h3
+              style={{
+                fontFamily: "'Anton', sans-serif",
+                fontSize: 'clamp(1.2rem, 3.5vw, 2.5rem)',
+                letterSpacing: '0.03em',
+                color: '#f5f5f5',
+                textTransform: 'uppercase',
+                lineHeight: 1.1,
+              }}
+            >
+              B.Tech in Computer Science
+            </h3>
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: 'clamp(0.75rem, 1.1vw, 0.88rem)',
+                color: '#888',
+                letterSpacing: '0.05em',
+                marginTop: '0.25rem',
+              }}
+            >
+              Shivaji University, Kolhapur &nbsp;|&nbsp; Expected 2027
+            </p>
+          </motion.div>
+
+          {/* ── Bottom bar — links + copyright ── */}
+          <motion.div
+            variants={revealUp}
+            style={{
+              marginTop: 'auto',
+              paddingTop: '2rem',
+              borderTop: '1px solid #1a1a1a',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '1.5rem',
+            }}
+          >
+            <div style={{ display: 'flex', gap: 'clamp(1rem, 3vw, 2.5rem)', flexWrap: 'wrap' }}>
+              {links.map((l) => (
+                <ContactLink key={l.label} label={l.label} href={l.href} />
+              ))}
+            </div>
+
+            <span
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: '0.6rem',
+                letterSpacing: '0.15em',
+                color: '#333',
+                textTransform: 'uppercase',
+              }}
+            >
+              ©2026 Om Patole — Built with React
+            </span>
+          </motion.div>
+        </motion.div>
+      </div>
     </section>
-  );
-};
-
-export default Contact;
+  )
+}

@@ -1,49 +1,199 @@
-/* 1. Import JetBrains Mono from Google Fonts (Put this at the very top) */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap');
-
 @import "tailwindcss";
 
-/* 2. Apply Global Styles */
-body {
+/* ── Design Tokens ──────────────────────────────────────────── */
+:root {
+  --bg: #0a0a0a;
+  --fg: #f5f5f5;
+  --font-display: 'Anton', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* ── Base Reset ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  /* FORCE JetBrains Mono everywhere */
-  font-family: 'JetBrains Mono', monospace;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Ensure code blocks and tailwind 'font-mono' classes also use it explicitly */
-code, kbd, samp, pre, .font-mono {
-  font-family: 'JetBrains Mono', monospace !important;
+/* ── Custom Scrollbar ───────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2a2a2a var(--bg);
 }
 
-/* --- Minimal Dot Grid Pattern --- */
-.bg-dot-pattern {
-  background-image: radial-gradient(circle, var(--dot-color) 0.5px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-/* --- Plus Grid Pattern --- */
-.bg-plus-pattern {
-  background-color: var(--dot-color);
-  --plus-mask: url("data:image/svg+xml,%3Csvg width='24' height='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 9v6m-3-3h6' stroke='black' stroke-width='1' stroke-linecap='square'/%3E%3C/svg%3E");
-  mask-image: var(--plus-mask);
-  -webkit-mask-image: var(--plus-mask);
-  mask-repeat: repeat;
-  -webkit-mask-repeat: repeat;
-  mask-size: 24px 24px;
-  -webkit-mask-size: 24px 24px;
-}
-
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 3px;
 }
+
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--bg);
 }
+
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(156, 163, 175, 0.5);
-  border-radius: 20px;
+  background: #2a2a2a;
+}
+
+/* ── Font helpers ───────────────────────────────────────────── */
+.font-display {
+  font-family: 'Anton', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* ── Glitch / Invert hover (logo, nav items) ─────────────────── */
+.glitch-hover {
+  transition: filter 0.1s ease;
+  cursor: pointer;
+}
+
+.glitch-hover:hover {
+  filter: invert(1);
+}
+
+/* ── Blog article row — full invert on hover ─────────────────── */
+.article-row {
+  transition: filter 0.1s ease;
+  cursor: pointer;
+}
+
+.article-row:hover {
+  filter: invert(1);
+}
+
+/* ── Project row — background sweep, text stays white ─────────── */
+.project-row {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.project-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #141414;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.project-row:hover::before {
+  transform: scaleX(1);
+}
+
+.project-row > a {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Desktop nav link with slide-underline ───────────────────── */
+.nav-link {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: 'Anton', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #f5f5f5;
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #f5f5f5;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ── Contact / footer link slide-underline ───────────────────── */
+.contact-link {
+  position: relative;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.contact-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #f5f5f5;
+  transition: width 0.3s ease;
+}
+
+.contact-link:hover::after {
+  width: 100%;
+}
+
+/* ── Hide desktop nav on mobile ──────────────────────────────── */
+@media (max-width: 767px) {
+  .desktop-nav {
+    display: none !important;
+  }
+}
+
+/* ── Hide hamburger on desktop ───────────────────────────────── */
+@media (min-width: 768px) {
+  .hamburger-btn {
+    display: none !important;
+  }
+}
+
+/* ── Scroll-down line animation ─────────────────────────────── */
+@keyframes scroll-line {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.scroll-line-inner {
+  animation: scroll-line 1.4s ease-in-out infinite;
 }

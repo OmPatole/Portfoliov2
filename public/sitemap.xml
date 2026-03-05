@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Main Portfolio Page -->
   <url>
     <loc>https://ompatole.tech/</loc>
-    <lastmod>2026-02-18</lastmod>
+    <lastmod>2026-03-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <!-- Terminal User Interface (TUI) Page -->
+
   <url>
-    <loc>https://ompatole.tech/tui</loc>
-    <lastmod>2026-02-18</lastmod>
+    <loc>https://ompatole.tech/blog</loc>
+    <lastmod>2026-03-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://ompatole.tech/Resume.pdf</loc>
+    <lastmod>2026-03-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

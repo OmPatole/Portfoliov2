@@ -1,74 +1,222 @@
-import { motion } from 'framer-motion';
-import { Download, ArrowRight, ShieldCheck } from 'lucide-react';
-import resumeFile from '../assets/Resume.pdf';
+import React from 'react'
+import { motion } from 'framer-motion'
 
-const Hero = ({ isDark }) => {
+/* ── Stagger container ─────────────────────────────────────── */
+const container = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+  },
+}
+
+const itemUp = {
+  hidden: { opacity: 0, y: 50 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+}
+
+/* ── Scroll-down animated line ─────────────────────────────── */
+function ScrollLine() {
   return (
-    // CHANGED: Added "md:min-h-screen" and "md:snap-start" for full screen behavior
-    <section id="about" className="w-full py-32 md:py-0 md:min-h-screen md:snap-start flex flex-col justify-center px-6 md:px-20 lg:px-32 md:items-center">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="max-w-4xl md:text-center"
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '0.6rem',
+        marginTop: '1rem',
+      }}
+    >
+      <span
+        style={{
+          fontFamily: "'Oswald', sans-serif",
+          fontSize: '0.65rem',
+          letterSpacing: '0.3em',
+          color: '#888',
+          textTransform: 'uppercase',
+        }}
       >
-        <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium mb-6 border ${
-          isDark 
-            ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400' 
-            : 'border-emerald-600/30 bg-emerald-600/10 text-emerald-700'
-        }`}>
-          <ShieldCheck size={14} />
-          <span>Security & Development</span>
-        </div>
+        See My Work
+      </span>
+      <div style={{ width: '1px', height: '60px', overflow: 'hidden', position: 'relative' }}>
+        <motion.div
+          style={{
+            width: '1px',
+            height: '100%',
+            background: 'linear-gradient(to bottom, transparent, #f5f5f5, transparent)',
+          }}
+          animate={{ y: ['-100%', '200%'] }}
+          transition={{ duration: 1.4, ease: 'easeInOut', repeat: Infinity }}
+        />
+      </div>
+    </div>
+  )
+}
 
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.1]">
-          Building secure,<br />
-          <span className={isDark ? 'text-gray-300' : 'text-gray-400'}>resilient digital infrastructure.</span>
-        </h1>
+export default function Hero() {
+  return (
+    <section
+      id="hero"
+      style={{
+        minHeight: '100vh',
+        backgroundColor: '#0a0a0a',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        padding: 'clamp(6rem, 10vw, 8rem) clamp(1.5rem, 5vw, 3rem) 3rem',
+        position: 'relative',
+        zIndex: 1,
+      }}
+    >
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative', zIndex: 2 }}
+      >
 
-        <p className={`text-lg md:text-xl max-w-2xl leading-relaxed mb-8 ${isDark ? 'text-gray-200' : 'text-gray-600'} md:mx-auto`}>
-          I'm <span className={isDark ? 'text-white font-semibold' : 'text-black font-semibold'}>Om Patole</span>. 
-          I bridge the gap between <span className={isDark ? 'text-blue-400' : 'text-blue-600'}>Full-Stack Development</span> and <span className={isDark ? 'text-emerald-400' : 'text-emerald-600'}>Cybersecurity</span>.
-        </p>
-
-        <p className={`text-base md:text-lg max-w-3xl leading-relaxed mb-10 ${isDark ? 'text-gray-300' : 'text-gray-500'} md:mx-auto`}>
-          With a deep focus on <strong>Network Security</strong> and <strong>Distributed Systems</strong>, I craft applications that are not only performant but fundamentally secure. 
-          Currently architecting next-gen solutions at <strong>Shivaji University</strong> and exploring the frontiers of <strong>Generative AI</strong>, 
-          I leverage stacks like MERN and Next.js to build software that stands the test of time.
-        </p>
-
-        <div className="flex flex-wrap gap-4 md:justify-center">
-          <a
-            href={resumeFile}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
-              isDark 
-                ? 'bg-white text-black hover:bg-gray-200' 
-                : 'bg-black text-white hover:bg-gray-800'
-            }`}
+        {/* ── "HI ! I'M" ──────────────────────────────────── */}
+        <motion.div variants={itemUp}>
+          <span
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: 'clamp(0.7rem, 1.5vw, 0.9rem)',
+              letterSpacing: '0.3em',
+              color: '#aaaaaa',
+              textTransform: 'uppercase',
+              display: 'block',
+              marginBottom: '0.5rem',
+            }}
           >
-            <Download size={18} />
-            Resume
-          </a>
-          <button
-            onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
-            // CHANGED: Added backdrop-blur-sm and low opacity background colors (bg-white/10 and bg-black/5)
-            // to make the button translucent instead of transparent.
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium border transition-all backdrop-blur-sm ${
-              isDark 
-                ? 'bg-white/10 border-white/20 hover:bg-white/20 text-white' 
-                : 'bg-black/5 border-black/20 hover:bg-black/10 text-black'
-            }`}
+            HI ! I'M
+          </span>
+        </motion.div>
+
+        {/* ── "OM PATOLE" ──────────────────────────────────── */}
+        <motion.div variants={itemUp} style={{ overflow: 'hidden' }}>
+          <h1
+            style={{
+              fontFamily: "'Anton', sans-serif",
+              fontSize: 'clamp(4rem, 15vw, 14rem)',
+              lineHeight: 0.88,
+              letterSpacing: '-0.01em',
+              color: '#f5f5f5',
+              textAlign: 'left',
+              textTransform: 'uppercase',
+            }}
           >
-            Projects
-            <ArrowRight size={18} />
-          </button>
-        </div>
+            OM PATOLE
+          </h1>
+        </motion.div>
+
+        {/* ── Description + Role row ───────────────────────── */}
+        <motion.div
+          variants={itemUp}
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+            marginTop: 'clamp(1rem, 3vw, 2rem)',
+            flexWrap: 'wrap',
+            gap: '1.5rem',
+          }}
+        >
+          {/* Left — small blurb, now clearly visible */}
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: 'clamp(0.78rem, 1.2vw, 0.9rem)',
+              color: '#c8c8c8',
+              lineHeight: 1.8,
+              maxWidth: '260px',
+              letterSpacing: '0.02em',
+              position: 'relative',
+              zIndex: 2,
+            }}
+          >
+            Building full-stack<br />
+            web experiences &amp;<br />
+            security-first tools.
+          </p>
+
+          {/* Right — "MERN STACK DEVELOPER" */}
+          <div style={{ textAlign: 'right' }}>
+            <span
+              style={{
+                fontFamily: "'Anton', sans-serif",
+                fontSize: 'clamp(2rem, 6vw, 5.5rem)',
+                lineHeight: 0.88,
+                letterSpacing: '0.02em',
+                color: '#f5f5f5',
+                display: 'block',
+                textTransform: 'uppercase',
+              }}
+            >
+              MERN STACK
+            </span>
+            <span
+              style={{
+                fontFamily: "'Anton', sans-serif",
+                fontSize: 'clamp(2rem, 6vw, 5.5rem)',
+                lineHeight: 0.88,
+                letterSpacing: '0.02em',
+                color: '#f5f5f5',
+                display: 'block',
+                textTransform: 'uppercase',
+              }}
+            >
+              DEVELOPER
+            </span>
+          </div>
+        </motion.div>
+
+        {/* ── Second small text balancer ───────────────────── */}
+        <motion.div
+          variants={itemUp}
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginTop: 'clamp(1.5rem, 3vw, 2.5rem)',
+            flexWrap: 'wrap',
+            gap: '1rem',
+            position: 'relative',
+            zIndex: 2,
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "'Oswald', sans-serif",
+              fontSize: 'clamp(0.65rem, 1vw, 0.75rem)',
+              letterSpacing: '0.25em',
+              color: '#888',
+              textTransform: 'uppercase',
+            }}
+          >
+            Kolhapur, India — Open to Opportunities
+          </span>
+          <span
+            style={{
+              fontFamily: "'Oswald', sans-serif",
+              fontSize: 'clamp(0.65rem, 1vw, 0.75rem)',
+              letterSpacing: '0.25em',
+              color: '#888',
+              textTransform: 'uppercase',
+            }}
+          >
+            React · Node · MongoDB · Express
+          </span>
+        </motion.div>
+      </motion.div>
+
+      {/* ── Scrolling indicator ──────────────────────────────── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 0.8 }}
+        style={{ display: 'flex', justifyContent: 'center', position: 'relative', zIndex: 2 }}
+      >
+        <ScrollLine />
       </motion.div>
     </section>
-  );
-};
-
-export default Hero;
+  )
+}
